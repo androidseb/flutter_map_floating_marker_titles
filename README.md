@@ -15,9 +15,9 @@ This is how it looks like, from the example sample app of this library:
 ## Project structure
 
 This project is divided into the following main folders:
-* `flutter_floating_map_marker_titles_core`: the core code of the floating map marker titles library, meant to be agnostic of any map view implementation
-* `flutter_map_floating_marker_titles`: the code of the floating map marker titles library for [Flutter Map](https://github.com/fleaflet/flutter_map)
-* `google_maps_flutter_floating_marker_titles`: the code of the floating map marker titles library for [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter)
+* `flutter_floating_map_marker_titles_core`: the core code of the floating map marker titles library, meant to be agnostic of any map view implementation, this is the source code of the [flutter_floating_map_marker_titles_core](https://pub.dev/packages/flutter_floating_map_marker_titles_core) library
+* `flutter_map_floating_marker_titles`: the code of the floating map marker titles library for [Flutter Map](https://github.com/fleaflet/flutter_map), this is the source code of the [flutter_map_floating_marker_titles](https://pub.dev/packages/flutter_map_floating_marker_titles) library
+* `google_maps_flutter_floating_marker_titles`: the code of the floating map marker titles library for [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter), this is the source code of the [google_maps_flutter_floating_marker_titles](https://pub.dev/packages/google_maps_flutter_floating_marker_titles) library
 * `example`: a simple example of a flutter application show-casing the use of the libraries
 
 ## Sample app setup
@@ -32,7 +32,13 @@ For a working example, see the flutter app project in the `example` folder of th
 
 ### Step 1: depend on the library
 
-TODO
+Add `flutter_map_floating_marker_titles` and/or `google_maps_flutter_floating_marker_titles` to your pubspec:
+
+```yaml
+dependencies:
+  flutter_map_floating_marker_titles: any # or the latest version on Pub
+  google_maps_flutter_floating_marker_titles: any # or the latest version on Pub
+```
 
 ### Step 2: create the FMTOOptions object
 
