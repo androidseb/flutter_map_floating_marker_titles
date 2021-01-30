@@ -1,11 +1,7 @@
 name: flutter_map_floating_marker_titles
-description: A new Flutter project.
-
-# The following line prevents the package from being accidentally published to
-# pub.dev using `pub publish`. This is preferred for private packages.
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
-
+description: Floating Map Marker Titles for flutter_map
 version: 0.0.1+1
+repository: https://github.com/androidseb/flutter_map_floating_marker_titles
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -14,15 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  flutter_map: 0.10.1+1
-  vector_math: any
-  
-  flutter_floating_map_marker_titles_core:
-    path: ../flutter_floating_map_marker_titles_core
+  latlong: ^0.6.1
+
+  flutter_floating_map_marker_titles_core: ^0.0.1+1
+  flutter_map: ^0.10.1+1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-flutter:
-  uses-material-design: true
