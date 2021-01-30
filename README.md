@@ -15,9 +15,9 @@ This is how it looks like, from the example sample app of this library:
 ## Project structure
 
 This project is divided into the following main folders:
-* `flutter_floating_map_marker_titles_core`: the core code of the floating map marker titles library, meant to be agnostic of any map view implementation, source code of the [TODO link lib]() library
-* `flutter_map_floating_marker_titles`: the code of the floating map marker titles library for [Flutter Map](https://github.com/fleaflet/flutter_map), source code of the [TODO link lib]() library
-* `google_maps_flutter_floating_marker_titles`: the code of the floating map marker titles library for [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter), source code of the [TODO link lib]() library
+* `flutter_floating_map_marker_titles_core`: the core code of the floating map marker titles library, meant to be agnostic of any map view implementation
+* `flutter_map_floating_marker_titles`: the code of the floating map marker titles library for [Flutter Map](https://github.com/fleaflet/flutter_map)
+* `google_maps_flutter_floating_marker_titles`: the code of the floating map marker titles library for [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter)
 * `example`: a simple example of a flutter application show-casing the use of the libraries
 
 ## Sample app setup
