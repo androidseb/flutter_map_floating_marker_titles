@@ -72,9 +72,9 @@ packages:
   flutter_floating_map_marker_titles_core:
     dependency: "direct main"
     description:
-      path: "../flutter_floating_map_marker_titles_core"
-      relative: true
-    source: path
+      name: flutter_floating_map_marker_titles_core
+      url: "https://pub.dartlang.org"
+    source: hosted
     version: "0.0.1+1"
   flutter_plugin_android_lifecycle:
     dependency: transitive
@@ -110,7 +110,7 @@ packages:
     source: hosted
     version: "0.16.1"
   latlong:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: latlong
       url: "https://pub.dartlang.org"
