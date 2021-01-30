@@ -14,16 +14,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  google_maps_flutter: ^1.0.6
-
-  flutter_floating_map_marker_titles_core:
-    path: ../flutter_floating_map_marker_titles_core
-
-  flutter_map_floating_marker_titles:
-    path: ../flutter_map_floating_marker_titles
-
-  google_maps_flutter_floating_marker_titles:
-    path: ../google_maps_flutter_floating_marker_titles
+  flutter_floating_map_marker_titles_core: ^0.0.1+1
+  flutter_map_floating_marker_titles: ^0.0.1+1
+  google_maps_flutter_floating_marker_titles: ^0.0.1+1
 
 dev_dependencies:
   flutter_test:
