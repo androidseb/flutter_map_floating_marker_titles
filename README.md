@@ -6,7 +6,7 @@ This library is useful if you want to see the titles of the markers on the map f
 * [Flutter Map](https://github.com/fleaflet/flutter_map)
 * [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter)
 
-## Gif preview
+## Visual Preview
 
 This is how it looks like, from the example sample app of this library:
 
@@ -26,17 +26,21 @@ In the sample app, the [Flutter Map](https://github.com/fleaflet/flutter_map) ex
 * `example/android/app/src/main/AndroidManifest.xml`
 * `example/ios/Runner/AppDelegate.m`
 
-## How to use this library in your code for
+## How to use this library in your code
 
 For a working example, see the flutter app project in the `example` folder of this repo.
 
-### Step 1: create the FMTOOptions object
+### Step 1: depend on the library
+
+TODO
+
+### Step 2: create the FMTOOptions object
 
 ```dart
 final FMTOOptions fmtoOptions = FMTOOptions();
 ```
 
-### Step 2: create the list of FloatingMarkerTitleInfo items
+### Step 3: create the list of FloatingMarkerTitleInfo items
 
 ```dart
 final List<FloatingMarkerTitleInfo> floatingTitles = [];
@@ -48,7 +52,7 @@ floatingTitles.add(FloatingMarkerTitleInfo(
 ));
 ```
 
-### Step 3a: Create the Flutter Map View
+### Step 4a: Create the Flutter Map View
 
 ```dart
 FlutterMapWithFMTO(
@@ -68,7 +72,7 @@ FlutterMapWithFMTO(
 ),
 ```
 
-### Step 3b: Create the Google Maps View
+### Step 4b: Create the Google Maps View
 
 ```dart
 GoogleMapWithFMTO(
