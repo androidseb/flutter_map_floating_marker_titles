@@ -1,6 +1,6 @@
 # Flutter Floating Map Marker Titles
 
-This library is inspired from [android-google-maps-floating-marker-titles](https://github.com/androidseb/android-google-maps-floating-marker-titles) and aims to achieve the same thing on Flutter apps.
+This library is inspired from [android-google-maps-floating-marker-titles](https://github.com/androidseb/android-google-maps-floating-marker-titles) and aims to achieve the same thing on Flutter apps. I have built this library as an experiment to gauge how much native-like things can be achieved with Flutter, and although I'm pretty happy with the result, this library is not used on production yet.
 
 This library is useful if you want to see the titles of the markers on the map floating next to the marker. It attempts to reproduce the behavior for labels of points of interest shown in map applications. It works as a wrapper of existing map view widgets for the following libraries:
 * [Flutter Map](https://github.com/fleaflet/flutter_map)
@@ -154,6 +154,6 @@ FloatingMarkerTitleInfo(
 
 ## About issues and/or feature requests
 
-I am not willing to invest time to take feature requests at the moment, but if you find a bug, I'll probably want to fix, so feel free to report any bugs you may find.
+I am not willing to invest time to take feature requests at the moment, but if you find a bug, I'll probably want to fix it, so feel free to report any bugs you may find.
 
 If you need a feature and want to build it and then submit it as a pull request, I'm willing to work with you to merge your work into the current code.
