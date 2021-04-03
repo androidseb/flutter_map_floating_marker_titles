@@ -5,3 +5,7 @@
 This is the initial release of the library.
 
 * Support for floating map marker titles on google_maps_flutter
+
+## [0.0.2+2] - 2020/04/01
+
+Fixed some issues with floating titles data not being updated in some cases, due to a wrong widget state setup.
