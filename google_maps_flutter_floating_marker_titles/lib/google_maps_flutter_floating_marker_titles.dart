@@ -5,6 +5,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
@@ -201,6 +202,14 @@ class _GoogleMapMVI extends AbstractCZRMapViewInterface {
   CameraPosition cameraPosition;
 
   _GoogleMapMVI(final int projCacheSize) : super(projCacheSize);
+
+  @override
+  void updateFrom(final AbstractMapViewInterface oldMapInterface) {
+    super.updateFrom(oldMapInterface);
+    if (oldMapInterface is _GoogleMapMVI) {
+      cameraPosition = oldMapInterface.cameraPosition;
+    }
+  }
 
   @override
   latlong.LatLng getMapViewCenter() {

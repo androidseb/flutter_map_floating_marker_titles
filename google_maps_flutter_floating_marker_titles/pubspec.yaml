@@ -12,7 +12,7 @@ dependencies:
 
   latlong: ^0.6.1
 
-  flutter_floating_map_marker_titles_core: ^0.0.1+1
+  flutter_floating_map_marker_titles_core: ^0.0.2+2
   google_maps_flutter: ^1.0.6
 
 dev_dependencies:
