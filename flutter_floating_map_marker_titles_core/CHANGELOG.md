@@ -22,3 +22,7 @@ This is the initial release of the library.
     * Color
     * Bold
     * Z-index
+
+## [0.0.2+2] - 2020/04/01
+
+Fixed some issues with floating titles data not being updated in some cases, due to a wrong widget state setup.
