@@ -3,6 +3,7 @@ library flutter_map_floating_marker_titles;
 import 'package:flutter/widgets.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -83,12 +84,20 @@ class FMTOMapController extends MapControllerImpl {
 }
 
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {
-  final FMTOMapController mapController;
+  FMTOMapController mapController;
 
   _FlutterMapMVI(
     this.mapController,
     final int projCacheSize,
   ) : super(projCacheSize);
+
+  @override
+  void updateFrom(final AbstractMapViewInterface oldMapInterface) {
+    super.updateFrom(oldMapInterface);
+    if (oldMapInterface is _FlutterMapMVI) {
+      mapController = oldMapInterface.mapController;
+    }
+  }
 
   @override
   LatLng getMapViewCenter() {

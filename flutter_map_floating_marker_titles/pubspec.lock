@@ -124,7 +124,7 @@ packages:
       name: flutter_floating_map_marker_titles_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.1+1"
+    version: "0.0.2+2"
   flutter_image:
     dependency: transitive
     description:
