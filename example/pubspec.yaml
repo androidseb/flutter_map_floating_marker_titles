@@ -13,10 +13,23 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Specifying the version 2.0.4 so that we remain compatible with Android API level 16 instead of 20.
+  # Version 2.0.5 of google_maps_flutter makes the minimum SDK version of Android apps 20.
+  # See changelog for details:
+  # https://pub.dev/packages/google_maps_flutter/changelog
+  google_maps_flutter: 2.0.4
 
-  flutter_floating_map_marker_titles_core: ^0.0.1+1
-  flutter_map_floating_marker_titles: ^0.0.1+1
-  google_maps_flutter_floating_marker_titles: ^0.0.1+1
+# Dependency overrides for the demo app, you would normally use this in dependencies:
+#  flutter_floating_map_marker_titles_core: ^X.Y.Z+1
+#  flutter_map_floating_marker_titles: ^X.Y.Z+1
+#  google_maps_flutter_floating_marker_titles: ^X.Y.Z+1
+dependency_overrides:
+  flutter_floating_map_marker_titles_core:
+    path: ../flutter_floating_map_marker_titles_core
+  flutter_map_floating_marker_titles:
+    path: ../flutter_map_floating_marker_titles
+  google_maps_flutter_floating_marker_titles:
+    path: ../google_maps_flutter_floating_marker_titles
 
 dev_dependencies:
   flutter_test:

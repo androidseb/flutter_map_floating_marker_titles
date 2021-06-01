@@ -180,10 +180,10 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
       indoorViewEnabled: _indoorViewEnabled,
       trafficEnabled: _trafficEnabled,
       buildingsEnabled: _buildingsEnabled,
-      markers: _markers,
-      polygons: _polygons,
-      polylines: _polylines,
-      circles: _circles,
+      markers: _markers ?? const <Marker>{},
+      polygons: _polygons ?? const <Polygon>{},
+      polylines: _polylines ?? const <Polyline>{},
+      circles: _circles ?? const <Circle>{},
       onCameraMoveStarted: _onCameraMoveStarted,
       onCameraMove: (final CameraPosition newPosition) {
         if (_onCameraMove != null) {
