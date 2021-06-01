@@ -1,6 +1,6 @@
 name: google_maps_flutter_floating_marker_titles
 description: Floating Map Marker Titles for google_maps_flutter
-version: 0.0.2+2
+version: 0.0.3+3
 repository: https://github.com/androidseb/flutter_map_floating_marker_titles
 
 environment:
