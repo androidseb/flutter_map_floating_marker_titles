@@ -96,7 +96,7 @@ packages:
       path: "../flutter_map_floating_marker_titles"
       relative: true
     source: path
-    version: "0.0.2+2"
+    version: "0.0.3+3"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
