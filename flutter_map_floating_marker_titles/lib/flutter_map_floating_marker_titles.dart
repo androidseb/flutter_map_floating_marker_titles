@@ -14,7 +14,9 @@ import 'package:latlong/latlong.dart';
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
   final List<LayerOptions> _layers;
+  final List<LayerOptions> _nonRotatedLayers;
   final List<Widget> _children;
+  final List<Widget> _nonRotatedChildren;
 
   factory FlutterMapWithFMTO(
     final List<FloatingMarkerTitleInfo> floatingTitles, {
@@ -22,7 +24,9 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Key key,
     @required final MapOptions options,
     final List<LayerOptions> layers = const [],
+    final List<LayerOptions> nonRotatedLayers = const [],
     final List<Widget> children = const [],
+    final List<Widget> nonRotatedChildren = const [],
     final FMTOMapController mapController,
   }) {
     return FlutterMapWithFMTO._internal(
@@ -32,7 +36,9 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       key,
       options,
       layers,
+      nonRotatedLayers,
       children,
+      nonRotatedChildren,
     );
   }
 
@@ -43,7 +49,9 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Key key,
     this._mapOptions,
     this._layers,
+    this._nonRotatedLayers,
     this._children,
+    this._nonRotatedChildren,
   ) : super(
           mapViewInterface,
           floatingTitles,
@@ -56,31 +64,24 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     return FlutterMap(
       options: _mapOptions,
       layers: _layers,
+      nonRotatedLayers: _nonRotatedLayers,
       children: _children,
+      nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
     );
   }
 }
 
 class FMTOMapController extends MapControllerImpl {
-  double _rotationDegrees = 0;
-  ValueChanged<double> _onRotationChanged;
-
-  FMTOMapController() {
-    super.onRotationChanged = (final double rotationDegrees) {
-      _rotationDegrees = rotationDegrees;
-      if (_onRotationChanged != null) {
-        _onRotationChanged(rotationDegrees);
-      }
-    };
-  }
+  MapState _state;
 
   @override
-  set onRotationChanged(onRotationChanged) {
-    _onRotationChanged = onRotationChanged;
+  set state(final MapState state) {
+    _state = state;
+    super.state = state;
   }
 
-  double get rotation => _rotationDegrees;
+  double get rotation => _state == null ? 0 : _state.rotation;
 }
 
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {
