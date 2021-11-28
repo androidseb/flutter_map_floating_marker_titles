@@ -10,10 +10,13 @@ dependencies:
   flutter:
     sdk: flutter
 
-  latlong: ^0.6.1
+  latlong2: ^0.8.1
 
-  flutter_floating_map_marker_titles_core: ^0.0.3+3
-  flutter_map: ^0.12.0
+  #flutter_floating_map_marker_titles_core: ^0.0.3+3
+  # Uncomment and use this a dependency when working locally
+  flutter_floating_map_marker_titles_core:
+    path: ../flutter_floating_map_marker_titles_core
+  flutter_map: ^0.14.0
 
 dev_dependencies:
   flutter_test:

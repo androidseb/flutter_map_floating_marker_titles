@@ -3,7 +3,7 @@ import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' a
 import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_flutter_floating_marker_titles/google_maps_flutter_floating_marker_titles.dart';
-import 'package:latlong/latlong.dart' as latlong;
+import 'package:latlong2/latlong.dart' as latlong;
 
 class GoogleMapsDemoPage extends AbstractDemoPage<Marker> {
   static const String route = 'Google Maps';

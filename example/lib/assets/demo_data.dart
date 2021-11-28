@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 const String APP_TITLE = 'Floating markers demo';
 const String FLUTTER_MAP_PAGE_TITLE = 'Flutter Map floating markers';

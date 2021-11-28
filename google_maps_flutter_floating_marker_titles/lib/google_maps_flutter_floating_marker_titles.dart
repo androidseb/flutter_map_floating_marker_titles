@@ -10,7 +10,7 @@ import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_ti
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:latlong/latlong.dart' as latlong;
+import 'package:latlong2/latlong.dart' as latlong;
 
 class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
   final CameraPosition _initialCameraPosition;

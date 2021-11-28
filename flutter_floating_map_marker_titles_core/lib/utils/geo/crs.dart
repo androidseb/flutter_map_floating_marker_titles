@@ -5,7 +5,7 @@ import 'dart:math' as Math;
 
 import 'package:flutter_floating_map_marker_titles_core/utils/geo/bounds.dart';
 import 'package:flutter_floating_map_marker_titles_core/utils/geo/point.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:meta/meta.dart';
 import 'package:proj4dart/proj4dart.dart' as proj4;
 import 'package:tuple/tuple.dart';

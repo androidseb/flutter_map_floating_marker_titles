@@ -10,11 +10,11 @@ dependencies:
   flutter:
     sdk: flutter
 
-  tuple: ^1.0.2
-  latlong: ^0.6.1
-  vector_math: ^2.0.8
-  proj4dart: ^1.0.4
-  meta: ^1.2.4
+  tuple: ^2.0.0
+  vector_math: ^2.1.0
+  proj4dart: ^2.0.0
+  meta: ^1.7.0
+  latlong2: ^0.8.1
 
 dev_dependencies:
   flutter_test:

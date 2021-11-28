@@ -1,6 +1,6 @@
 import 'package:flutter_floating_map_marker_titles_core/controller/cache/epsg_3857_proj_cache.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math.dart' as VectorMath;
 import 'dart:math' as Math;

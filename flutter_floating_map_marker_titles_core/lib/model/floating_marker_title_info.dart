@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 
 class FloatingMarkerTitleInfo {
   /// ID of the floating title, used by the system to track what was added/removed between two paints

@@ -1,6 +1,6 @@
 import 'package:flutter_floating_map_marker_titles_core/utils/cached_calculator.dart';
 import 'package:flutter_floating_map_marker_titles_core/utils/geo/crs.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'dart:math' as Math;
 
 class _Epsg3857ProjCacheKey {

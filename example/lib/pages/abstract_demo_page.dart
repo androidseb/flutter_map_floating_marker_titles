@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 import 'package:flutter_floating_map_marker_titles_demo/drawer/drawer.dart';
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 
 abstract class AbstractDemoPage<M> extends StatefulWidget {

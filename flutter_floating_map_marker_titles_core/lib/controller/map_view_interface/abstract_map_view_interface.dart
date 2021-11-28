@@ -1,4 +1,4 @@
-import 'package:latlong/latlong.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:flutter/material.dart';
 
 abstract class AbstractMapViewInterface {

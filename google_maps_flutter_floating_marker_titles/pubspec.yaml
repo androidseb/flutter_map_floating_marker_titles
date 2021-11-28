@@ -10,9 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  latlong: ^0.6.1
+  latlong2: ^0.8.1
 
-  flutter_floating_map_marker_titles_core: ^0.0.3+3
+  #flutter_floating_map_marker_titles_core: ^0.0.3+3
+  # Uncomment and use this a dependency when working locally
+  flutter_floating_map_marker_titles_core:
+    path: ../flutter_floating_map_marker_titles_core
   google_maps_flutter: ^2.0.4
 
 dev_dependencies:
