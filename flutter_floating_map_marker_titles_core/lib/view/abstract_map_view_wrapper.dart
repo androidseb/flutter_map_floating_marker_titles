@@ -13,7 +13,7 @@ abstract class AbstractMapViewWrapper<T extends AbstractMapViewInterface> extend
     this._mapViewInterface,
     this._floatingTitles,
     this._fmtoOptions, {
-    Key key,
+    Key? key,
   }) : super(key: key);
 
   Widget buildMapView(final BuildContext context, final T mapViewInterface);

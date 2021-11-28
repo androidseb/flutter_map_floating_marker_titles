@@ -12,8 +12,8 @@ class RotatingCache<K, V> {
     _secondaryCache = tmp;
   }
 
-  V getValue(final K key) {
-    V cachedValue = _primaryCache[key];
+  V? getValue(final K key) {
+    V? cachedValue = _primaryCache[key];
     if (cachedValue != null) {
       return cachedValue;
     }

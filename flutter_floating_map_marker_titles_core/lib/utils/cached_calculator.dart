@@ -14,7 +14,7 @@ abstract class CachedCalculator<K, V> {
   CachedCalculator(final int cacheMaxSize) : _cache = RotatingCache<K, V>(_computeSaneHalfCacheSize(cacheMaxSize));
 
   V getValue(final K key) {
-    final V existingCacheEntry = _cache.getValue(key);
+    final V? existingCacheEntry = _cache.getValue(key);
     if (existingCacheEntry != null) {
       return existingCacheEntry;
     }

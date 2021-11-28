@@ -1,10 +1,10 @@
 // File copied from the flutter_map project to re-use projection utils classes
-// Source project: https://github.com/fleaflet/flutter_map
+// Source project file: https://github.com/fleaflet/flutter_map/blob/master/lib/src/core/point.dart
 
 import 'dart:math' as math;
 
 class CustomPoint<T extends num> extends math.Point<T> {
-  const CustomPoint(num x, num y) : super(x, y);
+  const CustomPoint(num x, num y) : super(x as T, y as T);
 
   CustomPoint<T> operator /(num /*T|int*/ factor) {
     return CustomPoint<T>(x / factor, y / factor);
@@ -42,13 +42,27 @@ class CustomPoint<T extends num> extends math.Point<T> {
   }
 
   CustomPoint round() {
-    var x = this.x is double ? this.x.round() : this.x;
-    var y = this.y is double ? this.y.round() : this.y;
+    final x = this.x is double ? this.x.round() : this.x;
+    final y = this.y is double ? this.y.round() : this.y;
     return CustomPoint(x, y);
   }
 
   CustomPoint multiplyBy(num n) {
     return CustomPoint(x * n, y * n);
+  }
+
+  // Clockwise rotation
+  CustomPoint rotate(num radians) {
+    if (radians != 0.0) {
+      final cos = math.cos(radians);
+      final sin = math.sin(radians);
+      final nx = (cos * x) + (sin * y);
+      final ny = (cos * y) - (sin * x);
+
+      return CustomPoint(nx, ny);
+    }
+
+    return this;
   }
 
   @override

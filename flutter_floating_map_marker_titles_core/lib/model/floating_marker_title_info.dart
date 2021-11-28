@@ -21,10 +21,10 @@ class FloatingMarkerTitleInfo {
   final int zIndex;
 
   FloatingMarkerTitleInfo({
-    @required this.id,
-    @required this.latLng,
-    @required this.title,
-    @required this.color,
+    required this.id,
+    required this.latLng,
+    required this.title,
+    required this.color,
     this.isBold = false,
     this.zIndex = 1,
   });

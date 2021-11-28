@@ -16,7 +16,7 @@ abstract class TitleLayerPainter {
   final bool _isBoldText;
   final FMTOOptions _fmtoOptions;
 
-  TextPainter _textPainter;
+  late TextPainter _textPainter;
 
   TitleLayerPainter(
     this._textString,

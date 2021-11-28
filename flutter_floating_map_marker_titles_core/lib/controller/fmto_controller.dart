@@ -81,8 +81,8 @@ class FMTOController {
   final TitlesDisplayState _titlesDisplayState;
   final FMTOOptions fmtoOptions;
 
-  String _lastMapViewTitlesPerspectiveValue;
-  Function(double transparentLayerOpacity) _onTransparentTitlesOpacityChanged;
+  String? _lastMapViewTitlesPerspectiveValue;
+  Function(double transparentLayerOpacity)? _onTransparentTitlesOpacityChanged;
 
   FMTOController(
     this._mapViewInterface,
@@ -142,7 +142,7 @@ class FMTOController {
   /// titles with a lower zindex exist. The purpose of this check is to see if it's worth it to remove
   /// a few titles to fit the one with a higher priority, but if that title is blocked anyways, there
   /// is no point to remove lower zindex conflicting titles.
-  List<TitleDisplayInfo> _getConflictingLowerZIndexTitles(final TitleDisplayInfo titleDisplayInfo) {
+  List<TitleDisplayInfo>? _getConflictingLowerZIndexTitles(final TitleDisplayInfo titleDisplayInfo) {
     final int candidateZIndex = titleDisplayInfo.floatingMarkerTitleInfo.zIndex;
     final List<TitleDisplayInfo> res = [];
     for (final TitleDisplayInfo tdi in _titlesDisplayState.titleDisplayInfos) {
@@ -176,7 +176,7 @@ class FMTOController {
       if (!resolveTitlesCollisions || _titleFitsBetweenExistingTitles(newTdi)) {
         _titlesDisplayState.updateWithTitleInfo(newTdi);
       } else {
-        final List<TitleDisplayInfo> titlesToRemove = _getConflictingLowerZIndexTitles(newTdi);
+        final List<TitleDisplayInfo>? titlesToRemove = _getConflictingLowerZIndexTitles(newTdi);
         if (titlesToRemove == null) {
           _titlesDisplayState.removeTitleInfo(newTdi.floatingMarkerTitleInfo.id);
         } else {
@@ -315,7 +315,7 @@ class FMTOController {
 
   void _paintTitles(final Canvas canvas, final Set<int> floatingMarkerTitleInfoIds) {
     for (final int floatingMarkerTitleInfoId in floatingMarkerTitleInfoIds) {
-      final TitleDisplayInfo tdi = _titlesDisplayState.getTitleDisplayInfo(floatingMarkerTitleInfoId);
+      final TitleDisplayInfo? tdi = _titlesDisplayState.getTitleDisplayInfo(floatingMarkerTitleInfoId);
       if (tdi == null) {
         continue;
       }

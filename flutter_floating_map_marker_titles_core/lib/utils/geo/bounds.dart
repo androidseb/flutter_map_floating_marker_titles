@@ -1,7 +1,7 @@
 // File copied from the flutter_map project to re-use projection utils classes
-// Source project: https://github.com/fleaflet/flutter_map
+// Source project file: https://raw.githubusercontent.com/fleaflet/flutter_map/master/lib/src/core/bounds.dart
 
-import 'dart:math' as Math;
+import 'dart:math' as math;
 
 import 'package:flutter_floating_map_marker_titles_core/utils/geo/point.dart';
 
@@ -22,29 +22,23 @@ class Bounds<T extends num> {
   /// Creates a new [Bounds] obtained by expanding the current ones with a new
   /// point.
   Bounds<T> extend(CustomPoint<T> point) {
-    CustomPoint<T> newMin;
-    CustomPoint<T> newMax;
-    if (min == null && max == null) {
-      newMin = point;
-      newMax = point;
-    } else {
-      var minX = Math.min(point.x, min.x);
-      var maxX = Math.max(point.x, max.x);
-      var minY = Math.min(point.y, min.y);
-      var maxY = Math.max(point.y, max.y);
-      newMin = CustomPoint(minX, minY);
-      newMax = CustomPoint(maxX, maxY);
-    }
-    return Bounds._(newMin, newMax);
-  }
-
-  /// This [Bounds] cental point.
-  CustomPoint<double> getCenter() {
-    return CustomPoint<double>(
-      (min.x + max.x) / 2,
-      (min.y + max.y) / 2,
+    return Bounds._(
+      CustomPoint(
+        math.min(point.x, min.x),
+        math.min(point.y, min.y),
+      ),
+      CustomPoint(
+        math.max(point.x, max.x),
+        math.max(point.y, max.y),
+      ),
     );
   }
+
+  /// This [Bounds] central point.
+  CustomPoint<double> get center => CustomPoint<double>(
+        (min.x + max.x) / 2,
+        (min.y + max.y) / 2,
+      );
 
   /// Bottom-Left corner's point.
   CustomPoint<T> get bottomLeft => CustomPoint(min.x, max.y);

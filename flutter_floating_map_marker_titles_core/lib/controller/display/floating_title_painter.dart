@@ -7,7 +7,7 @@ import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controll
 import 'package:flutter/foundation.dart' show kIsWeb;
 
 class FloatingTitlePainter {
-  final TitleLayerPainter _bgLayerPainter;
+  final TitleLayerPainter? _bgLayerPainter;
   final TitleLayerPainter _fgLayerPainter;
 
   factory FloatingTitlePainter(
@@ -27,7 +27,7 @@ class FloatingTitlePainter {
     this._fgLayerPainter,
   );
 
-  static TitleLayerPainter _createBGPainter(
+  static TitleLayerPainter? _createBGPainter(
     final String textString,
     final Color textColor,
     final bool isBoldText,

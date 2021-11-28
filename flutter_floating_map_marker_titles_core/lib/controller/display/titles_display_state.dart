@@ -41,7 +41,7 @@ class TitlesDisplayState {
   int currentTitleIndex = 0;
   int lastFadeInStartTimeEpochMillis = 0;
 
-  TitleDisplayInfo getTitleDisplayInfo(final int floatingMarkerTitleInfoId) {
+  TitleDisplayInfo? getTitleDisplayInfo(final int floatingMarkerTitleInfoId) {
     return _titleDisplayInfoMap[floatingMarkerTitleInfoId];
   }
 
@@ -71,7 +71,7 @@ class TitlesDisplayState {
   }
 
   void updateWithTitleInfo(final TitleDisplayInfo titleDisplayInfo) {
-    final TitleDisplayInfo existingTDI = _titleDisplayInfoMap[titleDisplayInfo.floatingMarkerTitleInfo.id];
+    final TitleDisplayInfo? existingTDI = _titleDisplayInfoMap[titleDisplayInfo.floatingMarkerTitleInfo.id];
     if (existingTDI == null) {
       pendingFadeInTitleIds.add(titleDisplayInfo.floatingMarkerTitleInfo.id);
     } else {

@@ -27,8 +27,8 @@ abstract class AbstractCZRMapViewInterface extends AbstractMapViewInterface {
     final double mapViewRotationDegrees = getMapViewRotationDegrees();
     final Math.Point<num> targetPoint = _projCache.getProjectedLatLng(latLng, mapViewZoom);
     final Math.Point<num> centerPoint = _projCache.getProjectedLatLng(centerLatLng, mapViewZoom);
-    final double xDiff = targetPoint.x - centerPoint.x;
-    final double yDiff = targetPoint.y - centerPoint.y;
+    final double xDiff = targetPoint.x - (centerPoint.x as double);
+    final double yDiff = targetPoint.y - (centerPoint.y as double);
     final double viewCenterX = viewSize.width / 2;
     final double viewCenterY = viewSize.height / 2;
     if (mapViewRotationDegrees == 0) {

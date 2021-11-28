@@ -39,7 +39,7 @@ class _Epsg3857ProjCacheImpl extends CachedCalculator<_Epsg3857ProjCacheKey, Mat
 }
 
 class Epsg3857ProjCache {
-  _Epsg3857ProjCacheImpl _projectionsCache;
+  late _Epsg3857ProjCacheImpl _projectionsCache;
 
   Epsg3857ProjCache(final int cacheMaxSize) {
     _projectionsCache = _Epsg3857ProjCacheImpl(cacheMaxSize);

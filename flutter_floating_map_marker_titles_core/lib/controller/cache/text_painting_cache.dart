@@ -56,7 +56,7 @@ class _TextPaintingCacheImpl extends CachedCalculator<_TextPaintingCacheKey, Flo
 }
 
 class TextPaintingCache {
-  _TextPaintingCacheImpl _paintersCache;
+  late _TextPaintingCacheImpl _paintersCache;
 
   TextPaintingCache(final int cacheMaxSize) {
     _paintersCache = _TextPaintingCacheImpl(cacheMaxSize);
