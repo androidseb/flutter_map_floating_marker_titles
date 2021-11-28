@@ -9,7 +9,7 @@ import 'package:positioned_tap_detector_2/positioned_tap_detector_2.dart';
 class FlutterMapDemoPage extends AbstractDemoPage<Marker> {
   static const String route = 'Flutter Map';
 
-  FlutterMapDemoPage({final Key key}) : super(key: key);
+  FlutterMapDemoPage({final Key? key}) : super(key: key);
   @override
   _FlutterMapDemoPageState createState() => _FlutterMapDemoPageState();
 }

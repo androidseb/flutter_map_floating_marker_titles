@@ -6,7 +6,7 @@ import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 
 abstract class AbstractDemoPage<M> extends StatefulWidget {
-  AbstractDemoPage({final Key key}) : super(key: key);
+  AbstractDemoPage({final Key? key}) : super(key: key);
   @override
   AbstractDemoPageState<M> createState();
 }

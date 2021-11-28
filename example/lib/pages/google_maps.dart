@@ -8,7 +8,7 @@ import 'package:latlong2/latlong.dart' as latlong;
 class GoogleMapsDemoPage extends AbstractDemoPage<Marker> {
   static const String route = 'Google Maps';
 
-  GoogleMapsDemoPage({final Key key}) : super(key: key);
+  GoogleMapsDemoPage({final Key? key}) : super(key: key);
   @override
   _GoogleMapsDemoPageState createState() => _GoogleMapsDemoPageState();
 }
@@ -16,7 +16,7 @@ class GoogleMapsDemoPage extends AbstractDemoPage<Marker> {
 int markerId = 0;
 
 class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
-  BitmapDescriptor _markerIcon;
+  BitmapDescriptor? _markerIcon;
 
   Future<void> _createMarkerImageFromAsset(final BuildContext context) async {
     if (_markerIcon == null) {
@@ -68,7 +68,7 @@ class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
     return Marker(
       markerId: MarkerId('${markerId++}'),
       position: LatLng(latLng.latitude, latLng.longitude),
-      icon: _markerIcon,
+      icon: _markerIcon!,
     );
   }
 
