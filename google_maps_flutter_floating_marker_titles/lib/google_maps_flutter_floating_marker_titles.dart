@@ -14,8 +14,8 @@ import 'package:latlong2/latlong.dart' as latlong;
 
 class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
   final CameraPosition _initialCameraPosition;
-  final MapCreatedCallback _onMapCreated;
-  final Set<Factory<OneSequenceGestureRecognizer>> _gestureRecognizers;
+  final MapCreatedCallback? _onMapCreated;
+  final Set<Factory<OneSequenceGestureRecognizer>>? _gestureRecognizers;
   final bool _compassEnabled;
   final bool _mapToolbarEnabled;
   final CameraTargetBounds _cameraTargetBounds;
@@ -28,28 +28,28 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
   final bool _liteModeEnabled;
   final bool _tiltGesturesEnabled;
   final EdgeInsets _padding;
-  final Set<Marker> _markers;
-  final Set<Polygon> _polygons;
-  final Set<Polyline> _polylines;
-  final Set<Circle> _circles;
-  final VoidCallback _onCameraMoveStarted;
-  final CameraPositionCallback _onCameraMove;
-  final VoidCallback _onCameraIdle;
-  final ArgumentCallback<LatLng> _onTap;
-  final ArgumentCallback<LatLng> _onLongPress;
-  final bool _myLocationEnabled;
-  final bool _myLocationButtonEnabled;
-  final bool _indoorViewEnabled;
-  final bool _trafficEnabled;
-  final bool _buildingsEnabled;
+  final Set<Marker>? _markers;
+  final Set<Polygon>? _polygons;
+  final Set<Polyline>? _polylines;
+  final Set<Circle>? _circles;
+  final VoidCallback? _onCameraMoveStarted;
+  final CameraPositionCallback? _onCameraMove;
+  final VoidCallback? _onCameraIdle;
+  final ArgumentCallback<LatLng>? _onTap;
+  final ArgumentCallback<LatLng>? _onLongPress;
+  final bool? _myLocationEnabled;
+  final bool? _myLocationButtonEnabled;
+  final bool? _indoorViewEnabled;
+  final bool? _trafficEnabled;
+  final bool? _buildingsEnabled;
 
   factory GoogleMapWithFMTO(
     final List<FloatingMarkerTitleInfo> floatingTitles, {
-    final FMTOOptions fmtoOptions,
-    final Key key,
-    @required final CameraPosition initialCameraPosition,
-    final MapCreatedCallback onMapCreated,
-    final Set<Factory<OneSequenceGestureRecognizer>> gestureRecognizers,
+    required final FMTOOptions fmtoOptions,
+    final Key? key,
+    required final CameraPosition initialCameraPosition,
+    final MapCreatedCallback? onMapCreated,
+    final Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers,
     final bool compassEnabled = true,
     final bool mapToolbarEnabled = true,
     final CameraTargetBounds cameraTargetBounds = CameraTargetBounds.unbounded,
@@ -62,20 +62,20 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
     final bool liteModeEnabled = false,
     final bool tiltGesturesEnabled = true,
     final EdgeInsets padding = const EdgeInsets.all(0),
-    final Set<Marker> markers,
-    final Set<Polygon> polygons,
-    final Set<Polyline> polylines,
-    final Set<Circle> circles,
-    final VoidCallback onCameraMoveStarted,
-    final CameraPositionCallback onCameraMove,
-    final VoidCallback onCameraIdle,
-    final ArgumentCallback<LatLng> onTap,
-    final ArgumentCallback<LatLng> onLongPress,
-    final bool myLocationEnabled,
-    final bool myLocationButtonEnabled,
-    final bool indoorViewEnabled,
-    final bool trafficEnabled,
-    final bool buildingsEnabled,
+    final Set<Marker>? markers,
+    final Set<Polygon>? polygons,
+    final Set<Polyline>? polylines,
+    final Set<Circle>? circles,
+    final VoidCallback? onCameraMoveStarted,
+    final CameraPositionCallback? onCameraMove,
+    final VoidCallback? onCameraIdle,
+    final ArgumentCallback<LatLng>? onTap,
+    final ArgumentCallback<LatLng>? onLongPress,
+    final bool? myLocationEnabled,
+    final bool? myLocationButtonEnabled,
+    final bool? indoorViewEnabled,
+    final bool? trafficEnabled,
+    final bool? buildingsEnabled,
   }) {
     return GoogleMapWithFMTO._internal(
       _GoogleMapMVI(fmtoOptions.mapProjectionsCacheSize),
@@ -118,7 +118,7 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
     final _GoogleMapMVI mapViewInterface,
     final List<FloatingMarkerTitleInfo> floatingTitles,
     final FMTOOptions fmtoOptions,
-    final Key key,
+    final Key? key,
     this._initialCameraPosition,
     this._onMapCreated,
     this._gestureRecognizers,
@@ -162,7 +162,7 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
     return GoogleMap(
       initialCameraPosition: _initialCameraPosition,
       onMapCreated: _onMapCreated,
-      gestureRecognizers: _gestureRecognizers,
+      gestureRecognizers: _gestureRecognizers ?? const <Factory<OneSequenceGestureRecognizer>>{},
       compassEnabled: _compassEnabled,
       mapToolbarEnabled: _mapToolbarEnabled,
       cameraTargetBounds: _cameraTargetBounds,
@@ -174,21 +174,19 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
       zoomGesturesEnabled: _zoomGesturesEnabled,
       liteModeEnabled: _liteModeEnabled,
       tiltGesturesEnabled: _tiltGesturesEnabled,
-      myLocationEnabled: _myLocationEnabled,
-      myLocationButtonEnabled: _myLocationButtonEnabled,
+      myLocationEnabled: _myLocationEnabled ?? false,
+      myLocationButtonEnabled: _myLocationButtonEnabled ?? true,
       padding: _padding,
-      indoorViewEnabled: _indoorViewEnabled,
-      trafficEnabled: _trafficEnabled,
-      buildingsEnabled: _buildingsEnabled,
+      indoorViewEnabled: _indoorViewEnabled ?? false,
+      trafficEnabled: _trafficEnabled ?? false,
+      buildingsEnabled: _buildingsEnabled ?? true,
       markers: _markers ?? const <Marker>{},
       polygons: _polygons ?? const <Polygon>{},
       polylines: _polylines ?? const <Polyline>{},
       circles: _circles ?? const <Circle>{},
       onCameraMoveStarted: _onCameraMoveStarted,
       onCameraMove: (final CameraPosition newPosition) {
-        if (_onCameraMove != null) {
-          _onCameraMove(newPosition);
-        }
+        _onCameraMove?.call(newPosition);
         mapViewInterface.cameraPosition = newPosition;
       },
       onCameraIdle: _onCameraIdle,
@@ -199,7 +197,7 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
 }
 
 class _GoogleMapMVI extends AbstractCZRMapViewInterface {
-  CameraPosition cameraPosition;
+  CameraPosition? cameraPosition;
 
   _GoogleMapMVI(final int projCacheSize) : super(projCacheSize);
 
@@ -213,31 +211,32 @@ class _GoogleMapMVI extends AbstractCZRMapViewInterface {
 
   @override
   latlong.LatLng getMapViewCenter() {
-    if (cameraPosition == null ||
-        cameraPosition.target == null ||
-        cameraPosition.target.latitude.isNaN ||
-        cameraPosition.target.longitude.isNaN) {
+    final double? latitude = cameraPosition?.target.latitude;
+    final double? longitude = cameraPosition?.target.longitude;
+    if (latitude == null || longitude == null || latitude.isNaN || longitude.isNaN) {
       return latlong.LatLng(0, 0);
     }
     return latlong.LatLng(
-      cameraPosition.target.latitude,
-      cameraPosition.target.longitude,
+      latitude,
+      longitude,
     );
   }
 
   @override
   double getMapViewZoom() {
-    if (cameraPosition == null || cameraPosition.zoom.isNaN) {
+    final double? zoom = cameraPosition?.zoom;
+    if (zoom == null || zoom.isNaN) {
       return 1;
     }
-    return cameraPosition.zoom;
+    return zoom;
   }
 
   @override
   double getMapViewRotationDegrees() {
-    if (cameraPosition == null || cameraPosition.bearing.isNaN) {
-      return 0;
+    final double? bearing = cameraPosition?.bearing;
+    if (bearing == null || bearing.isNaN) {
+      return 1;
     }
-    return -cameraPosition.bearing;
+    return bearing;
   }
 }
