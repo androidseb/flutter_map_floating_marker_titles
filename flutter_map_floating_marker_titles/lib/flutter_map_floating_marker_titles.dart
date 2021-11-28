@@ -20,14 +20,14 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
 
   factory FlutterMapWithFMTO(
     final List<FloatingMarkerTitleInfo> floatingTitles, {
-    final FMTOOptions fmtoOptions,
-    final Key key,
-    @required final MapOptions options,
+    required final FMTOOptions fmtoOptions,
+    final Key? key,
+    required final MapOptions options,
     final List<LayerOptions> layers = const [],
     final List<LayerOptions> nonRotatedLayers = const [],
     final List<Widget> children = const [],
     final List<Widget> nonRotatedChildren = const [],
-    final FMTOMapController mapController,
+    final FMTOMapController? mapController,
   }) {
     return FlutterMapWithFMTO._internal(
       _FlutterMapMVI(mapController ?? FMTOMapController(), fmtoOptions.mapProjectionsCacheSize),
@@ -46,7 +46,7 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final _FlutterMapMVI mapViewInterface,
     final List<FloatingMarkerTitleInfo> floatingTitles,
     final FMTOOptions fmtoOptions,
-    final Key key,
+    final Key? key,
     this._mapOptions,
     this._layers,
     this._nonRotatedLayers,
@@ -73,7 +73,7 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
 }
 
 class FMTOMapController extends MapControllerImpl {
-  MapState _state;
+  MapState? _state;
 
   @override
   set state(final MapState state) {
@@ -81,7 +81,7 @@ class FMTOMapController extends MapControllerImpl {
     super.state = state;
   }
 
-  double get rotation => _state == null ? 0 : _state.rotation;
+  double get rotation => _state?.rotation ?? 0;
 }
 
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {
