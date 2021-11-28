@@ -88,7 +88,7 @@ class FMTOController {
     this._mapViewInterface,
     this._floatingTitles,
     final FMTOOptions options,
-  )   : this.fmtoOptions = options ?? const FMTOOptions(),
+  )   : this.fmtoOptions = options,
         this._titlesMap = Map(),
         this._textPaintingCache = TextPaintingCache(options.textPaintingCacheSize),
         this._titlesDisplayState = TitlesDisplayState() {

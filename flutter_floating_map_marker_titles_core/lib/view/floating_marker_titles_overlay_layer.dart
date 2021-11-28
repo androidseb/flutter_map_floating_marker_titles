@@ -58,7 +58,7 @@ class _FloatingMarkersTitlesPainter extends CustomPainter {
 
   @override
   void paint(final Canvas canvas, final Size size) {
-    if (size != null && size.width > 0 && size.height > 0) {
+    if (size.width > 0 && size.height > 0) {
       // This call to clipRect is necessary to make sure the drawing doesn't happen over other views
       canvas.clipRect(Rect.fromLTRB(
         0,
