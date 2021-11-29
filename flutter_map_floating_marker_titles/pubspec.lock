@@ -58,10 +58,10 @@ packages:
   flutter_floating_map_marker_titles_core:
     dependency: "direct main"
     description:
-      path: "../flutter_floating_map_marker_titles_core"
-      relative: true
-    source: path
-    version: "0.0.3+3"
+      name: flutter_floating_map_marker_titles_core
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.4+4"
   flutter_map:
     dependency: "direct main"
     description:
