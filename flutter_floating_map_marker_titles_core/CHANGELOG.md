@@ -1,3 +1,7 @@
+## [0.0.4+4] - 2021/11/29
+
+Migrated to null safety.
+
 ## [0.0.3+3] - 2021/06/01
 
 Updated dependencies to support dependent libraries.
