@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/bg_native_title_layer_painter.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/fg_native_title_layer_painter.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/fg_web_title_layer_painter.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/title_layer_background_painter.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/title_layer_foreground_painter.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/title_layer_painter.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
-import 'package:flutter/foundation.dart' show kIsWeb;
 
 class FloatingTitlePainter {
   final TitleLayerPainter? _bgLayerPainter;
@@ -33,10 +31,7 @@ class FloatingTitlePainter {
     final bool isBoldText,
     final FMTOOptions fmtoOptions,
   ) {
-    if (kIsWeb) {
-      return null;
-    }
-    return BgNativeTitleLayerPainter(
+    return TitleLayerBackgroundPainter(
       textString,
       textColor,
       isBoldText,
@@ -50,21 +45,12 @@ class FloatingTitlePainter {
     final bool isBoldText,
     final FMTOOptions fmtoOptions,
   ) {
-    if (kIsWeb) {
-      return FgWebTitleLayerPainter(
-        textString,
-        textColor,
-        isBoldText,
-        fmtoOptions,
-      );
-    } else {
-      return FgNativeTitleLayerPainter(
-        textString,
-        textColor,
-        isBoldText,
-        fmtoOptions,
-      );
-    }
+    return TitleLayerForegroundPainter(
+      textString,
+      textColor,
+      isBoldText,
+      fmtoOptions,
+    );
   }
 
   void paintTitle(final Canvas canvas, final Offset offset) {
