@@ -61,7 +61,7 @@ packages:
       name: flutter_floating_map_marker_titles_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5+5"
+    version: "0.0.6"
   flutter_map:
     dependency: "direct main"
     description:
@@ -255,5 +255,5 @@ packages:
     source: hosted
     version: "2.0.0"
 sdks:
-  dart: ">=2.17.0-0 <3.0.0"
+  dart: ">=2.17.0 <3.0.0"
   flutter: ">=2.8.0"

@@ -1,3 +1,7 @@
+## [0.0.6] - 2022/06/11
+
+Updated dependencies to use flutter_map: ^1.0.0
+
 ## [0.0.5+5] - 2022/01/09
 
 Removed web-specific code working around [a bug](https://github.com/flutter/flutter/issues/46683) that has since then been fixed.
