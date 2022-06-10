@@ -237,6 +237,6 @@ class _GoogleMapMVI extends AbstractCZRMapViewInterface {
     if (bearing == null || bearing.isNaN) {
       return 1;
     }
-    return bearing;
+    return -bearing;
   }
 }
