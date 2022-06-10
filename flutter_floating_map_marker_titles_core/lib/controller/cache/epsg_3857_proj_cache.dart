@@ -1,7 +1,7 @@
+import 'dart:math' as math;
 import 'package:flutter_floating_map_marker_titles_core/utils/cached_calculator.dart';
 import 'package:flutter_floating_map_marker_titles_core/utils/geo/crs.dart';
 import 'package:latlong2/latlong.dart';
-import 'dart:math' as Math;
 
 class _Epsg3857ProjCacheKey {
   final LatLng latLng;
@@ -19,7 +19,7 @@ class _Epsg3857ProjCacheKey {
 
   @override
   bool operator ==(Object other) {
-    if (!(other is _Epsg3857ProjCacheKey)) {
+    if (other is! _Epsg3857ProjCacheKey) {
       return false;
     }
     final _Epsg3857ProjCacheKey o = other;
@@ -27,13 +27,13 @@ class _Epsg3857ProjCacheKey {
   }
 }
 
-class _Epsg3857ProjCacheImpl extends CachedCalculator<_Epsg3857ProjCacheKey, Math.Point<num>> {
-  static final Epsg3857 mapProjection = Epsg3857();
+class _Epsg3857ProjCacheImpl extends CachedCalculator<_Epsg3857ProjCacheKey, math.Point<num>> {
+  static const Epsg3857 mapProjection = Epsg3857();
 
   _Epsg3857ProjCacheImpl(final int cacheMaxSize) : super(cacheMaxSize);
 
   @override
-  Math.Point<num> calculateValue(final _Epsg3857ProjCacheKey key) {
+  math.Point<num> calculateValue(final _Epsg3857ProjCacheKey key) {
     return mapProjection.latLngToPoint(key.latLng, key.zoom);
   }
 }
@@ -49,7 +49,7 @@ class Epsg3857ProjCache {
     _projectionsCache = projCache._projectionsCache;
   }
 
-  Math.Point<num> getProjectedLatLng(final LatLng latLng, final double zoom) {
+  math.Point<num> getProjectedLatLng(final LatLng latLng, final double zoom) {
     return _projectionsCache.getValue(_Epsg3857ProjCacheKey(latLng, zoom));
   }
 }

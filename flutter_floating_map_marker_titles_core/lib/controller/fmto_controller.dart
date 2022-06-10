@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -6,9 +7,6 @@ import 'package:flutter_floating_map_marker_titles_core/controller/display/float
 import 'package:flutter_floating_map_marker_titles_core/controller/display/titles_display_state.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
-
-import 'dart:math' as Math;
-
 import 'package:flutter_floating_map_marker_titles_core/utils/utils.dart';
 
 enum FloatingMarkerGravity {
@@ -88,19 +86,20 @@ class FMTOController {
     this._mapViewInterface,
     this._floatingTitles,
     final FMTOOptions options,
-  )   : this.fmtoOptions = options,
-        this._titlesMap = Map(),
-        this._textPaintingCache = TextPaintingCache(options.textPaintingCacheSize),
-        this._titlesDisplayState = TitlesDisplayState() {
+  )   : fmtoOptions = options,
+        _titlesMap = {},
+        _textPaintingCache = TextPaintingCache(options.textPaintingCacheSize),
+        _titlesDisplayState = TitlesDisplayState() {
     _updateTitlesMap();
   }
 
   void setOnTransparentTitlesOpacityChanged(
-      final Function(double transparentLayerOpacity) onTransparentTitlesOpacityChanged) {
+    final Function(double transparentLayerOpacity) onTransparentTitlesOpacityChanged,
+  ) {
     _onTransparentTitlesOpacityChanged = onTransparentTitlesOpacityChanged;
   }
 
-  void _updateTitlesMap() async {
+  Future<void> _updateTitlesMap() async {
     for (final FloatingMarkerTitleInfo fmti in _floatingTitles) {
       _titlesMap[fmti.id] = fmti;
     }
@@ -228,7 +227,7 @@ class FMTOController {
       floatingMarkerTitleInfo.title,
       floatingMarkerTitleInfo.color,
       floatingMarkerTitleInfo.isBold,
-      this.fmtoOptions,
+      fmtoOptions,
     );
     final Offset viewCoordinates = _mapViewInterface.latLngToViewCoordinates(
       floatingMarkerTitleInfo.latLng,
@@ -259,7 +258,7 @@ class FMTOController {
     if (_titlesDisplayState.titlesCount >= fmtoOptions.maxTitlesCount) {
       return;
     }
-    final int titlesToCheck = Math.min(_floatingTitles.length, fmtoOptions.titlesToCheckPerFrame);
+    final int titlesToCheck = math.min(_floatingTitles.length, fmtoOptions.titlesToCheckPerFrame);
     if (titlesToCheck <= 0) {
       return;
     }
@@ -269,6 +268,7 @@ class FMTOController {
       final int saneIndex = i % _floatingTitles.length;
       final FloatingMarkerTitleInfo fmti = _floatingTitles[saneIndex];
       _updateDisplayStateWithTitleInfo(fmti, size, true);
+      // ignore: invariant_booleans
       if (_titlesDisplayState.titlesCount >= fmtoOptions.maxTitlesCount) {
         break;
       }

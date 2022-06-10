@@ -9,7 +9,7 @@ abstract class AbstractMapViewWrapper<T extends AbstractMapViewInterface> extend
   final List<FloatingMarkerTitleInfo> _floatingTitles;
   final FMTOOptions _fmtoOptions;
 
-  AbstractMapViewWrapper(
+  const AbstractMapViewWrapper(
     this._mapViewInterface,
     this._floatingTitles,
     this._fmtoOptions, {

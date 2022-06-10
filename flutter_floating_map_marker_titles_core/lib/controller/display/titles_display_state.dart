@@ -34,10 +34,10 @@ class TitleDisplayInfo {
 }
 
 class TitlesDisplayState {
-  final Map<int, TitleDisplayInfo> _titleDisplayInfoMap = Map();
-  final Set<int> fullyVisibleTitleIds = Set();
-  final Set<int> fadingInTitleIds = Set();
-  final Set<int> pendingFadeInTitleIds = Set();
+  final Map<int, TitleDisplayInfo> _titleDisplayInfoMap = {};
+  final Set<int> fullyVisibleTitleIds = {};
+  final Set<int> fadingInTitleIds = {};
+  final Set<int> pendingFadeInTitleIds = {};
   int currentTitleIndex = 0;
   int lastFadeInStartTimeEpochMillis = 0;
 

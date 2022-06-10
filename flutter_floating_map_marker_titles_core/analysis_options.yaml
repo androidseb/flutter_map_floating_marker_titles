@@ -1,0 +1,13 @@
+include: package:lint/analysis_options.yaml
+
+analyzer:
+  exclude:
+    - 'lib/utils/geo/bounds.dart'
+    - 'lib/utils/geo/crs.dart'
+    - 'lib/utils/geo/point.dart'
+# can be found at https://dart-lang.github.io/linter/lints/options/options.html
+linter:
+  rules:
+    avoid_positional_boolean_parameters: false
+    avoid_classes_with_only_static_members: false
+    use_setters_to_change_properties: false

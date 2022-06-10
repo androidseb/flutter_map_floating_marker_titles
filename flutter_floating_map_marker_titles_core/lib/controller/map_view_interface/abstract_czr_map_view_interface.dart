@@ -1,9 +1,9 @@
+import 'dart:math' as math;
+import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/cache/epsg_3857_proj_cache.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:flutter/material.dart';
-import 'package:vector_math/vector_math.dart' as VectorMath;
-import 'dart:math' as Math;
+import 'package:vector_math/vector_math.dart' as vector_math;
 
 abstract class AbstractCZRMapViewInterface extends AbstractMapViewInterface {
   final Epsg3857ProjCache _projCache;
@@ -25,8 +25,8 @@ abstract class AbstractCZRMapViewInterface extends AbstractMapViewInterface {
     final LatLng centerLatLng = getMapViewCenter();
     final double mapViewZoom = getMapViewZoom();
     final double mapViewRotationDegrees = getMapViewRotationDegrees();
-    final Math.Point<num> targetPoint = _projCache.getProjectedLatLng(latLng, mapViewZoom);
-    final Math.Point<num> centerPoint = _projCache.getProjectedLatLng(centerLatLng, mapViewZoom);
+    final math.Point<num> targetPoint = _projCache.getProjectedLatLng(latLng, mapViewZoom);
+    final math.Point<num> centerPoint = _projCache.getProjectedLatLng(centerLatLng, mapViewZoom);
     final double xDiff = targetPoint.x - (centerPoint.x as double);
     final double yDiff = targetPoint.y - (centerPoint.y as double);
     final double viewCenterX = viewSize.width / 2;
@@ -34,17 +34,17 @@ abstract class AbstractCZRMapViewInterface extends AbstractMapViewInterface {
     if (mapViewRotationDegrees == 0) {
       return Offset(viewCenterX + xDiff, viewCenterY + yDiff);
     } else {
-      final double radius = Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2));
-      final double baseAngleRad = Math.acos(xDiff / radius);
-      final double angleDeltaRad = VectorMath.radians(mapViewRotationDegrees);
+      final double radius = math.sqrt(math.pow(xDiff, 2) + math.pow(yDiff, 2));
+      final double baseAngleRad = math.acos(xDiff / radius);
+      final double angleDeltaRad = vector_math.radians(mapViewRotationDegrees);
       double resultingAngleRad;
       if (yDiff >= 0) {
         resultingAngleRad = baseAngleRad + angleDeltaRad;
       } else {
         resultingAngleRad = angleDeltaRad - baseAngleRad;
       }
-      final double translatedXDiff = radius * Math.cos(resultingAngleRad);
-      final double translatedYDiff = radius * Math.sin(resultingAngleRad);
+      final double translatedXDiff = radius * math.cos(resultingAngleRad);
+      final double translatedYDiff = radius * math.sin(resultingAngleRad);
       return Offset(
         viewCenterX + translatedXDiff,
         viewCenterY + translatedYDiff,

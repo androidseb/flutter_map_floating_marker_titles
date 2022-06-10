@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Utils {
-  static const double MIN_LUMINANCE_TO_LIGHT_TINTING = 0.75;
+  static const double minLuminanceToLightTinting = 0.75;
 
   static double colorLuminance(final Color color) {
     final double red = color.red / 255.0;
@@ -11,11 +11,11 @@ class Utils {
     return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
   }
 
-  static isDarkColor(final Color color) {
-    return colorLuminance(color) < MIN_LUMINANCE_TO_LIGHT_TINTING;
+  static bool isDarkColor(final Color color) {
+    return colorLuminance(color) < minLuminanceToLightTinting;
   }
 
-  static currentTimeEpochMillis() {
+  static int currentTimeEpochMillis() {
     return DateTime.now().millisecondsSinceEpoch;
   }
 }

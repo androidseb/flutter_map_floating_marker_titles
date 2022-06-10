@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/display/layer/title_layer_painter.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 
 class TitleLayerForegroundPainter extends TitleLayerPainter {
   TitleLayerForegroundPainter(

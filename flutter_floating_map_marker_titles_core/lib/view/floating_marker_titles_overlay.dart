@@ -36,7 +36,6 @@ class _FlutterMapFloatingMarkerTitlesOverlayState extends State<FlutterMapFloati
       children: [
         FlutterMapFloatingMarkerTitlesOverlayLayer(
           widget._fmtoController,
-          transparentTitles: false,
         ),
         _FMTOTransparentTitlesLayerWrapper(widget._fmtoController),
       ],
@@ -47,11 +46,12 @@ class _FlutterMapFloatingMarkerTitlesOverlayState extends State<FlutterMapFloati
 class _FMTOTransparentTitlesLayerWrapper extends StatefulWidget {
   final FMTOController _fmtoController;
 
-  _FMTOTransparentTitlesLayerWrapper(
+  const _FMTOTransparentTitlesLayerWrapper(
     this._fmtoController, {
     final Key? key,
   }) : super(key: key);
 
+  @override
   _FMTOTransparentTitlesLayerWrapperState createState() => _FMTOTransparentTitlesLayerWrapperState();
 }
 
@@ -61,7 +61,7 @@ class _FMTOTransparentTitlesLayerWrapperState extends State<_FMTOTransparentTitl
   @override
   Widget build(final BuildContext context) {
     widget._fmtoController.setOnTransparentTitlesOpacityChanged((final double transparentTitlesOpacity) {
-      Future.delayed(Duration(milliseconds: 0), () {
+      Future.delayed(Duration.zero, () {
         setState(() {
           _transparentTitlesOpacity = transparentTitlesOpacity;
         });

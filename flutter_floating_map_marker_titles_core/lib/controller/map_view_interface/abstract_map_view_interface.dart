@@ -1,5 +1,5 @@
-import 'package:latlong2/latlong.dart';
 import 'package:flutter/material.dart';
+import 'package:latlong2/latlong.dart';
 
 abstract class AbstractMapViewInterface {
   /// Update the Map Interface from a previous instance.

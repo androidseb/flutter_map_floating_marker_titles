@@ -4,7 +4,7 @@ import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controll
 class FlutterMapFloatingMarkerTitlesOverlayLayer extends StatelessWidget {
   final FMTOController _fmtoController;
   final bool transparentTitles;
-  FlutterMapFloatingMarkerTitlesOverlayLayer(
+  const FlutterMapFloatingMarkerTitlesOverlayLayer(
     this._fmtoController, {
     this.transparentTitles = false,
   });
@@ -12,12 +12,12 @@ class FlutterMapFloatingMarkerTitlesOverlayLayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      constraints: BoxConstraints.expand(),
+      constraints: const BoxConstraints.expand(),
       child: CustomPaint(
         foregroundPainter: _FloatingMarkersTitlesPainter(
           _fmtoController,
           _FMTPainterNotifier(),
-          this.transparentTitles,
+          transparentTitles,
         ),
       ),
     );
@@ -25,7 +25,7 @@ class FlutterMapFloatingMarkerTitlesOverlayLayer extends StatelessWidget {
 }
 
 class _FMTPainterNotifier extends ChangeNotifier {
-  triggerRepaint() {
+  void triggerRepaint() {
     notifyListeners();
   }
 }
@@ -47,11 +47,13 @@ class _FloatingMarkersTitlesPainter extends CustomPainter {
     }
   }
 
-  void _repaintForever() async {
+  Future<void> _repaintForever() async {
     while (true) {
-      await Future.delayed(Duration(
-        milliseconds: this._fmtoController.fmtoOptions.repaintIntervalMillis,
-      ));
+      await Future.delayed(
+        Duration(
+          milliseconds: _fmtoController.fmtoOptions.repaintIntervalMillis,
+        ),
+      );
       _changeNotifier.triggerRepaint();
     }
   }
@@ -60,12 +62,14 @@ class _FloatingMarkersTitlesPainter extends CustomPainter {
   void paint(final Canvas canvas, final Size size) {
     if (size.width > 0 && size.height > 0) {
       // This call to clipRect is necessary to make sure the drawing doesn't happen over other views
-      canvas.clipRect(Rect.fromLTRB(
-        0,
-        0,
-        size.width,
-        size.height,
-      ));
+      canvas.clipRect(
+        Rect.fromLTRB(
+          0,
+          0,
+          size.width,
+          size.height,
+        ),
+      );
     }
     _fmtoController.paintFloatingMarkerTitles(
       canvas,

@@ -12,13 +12,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
+  latlong2: ^0.8.1
+  meta: ^1.7.0
+  proj4dart: ^2.0.0
   tuple: ^2.0.0
   vector_math: ^2.1.0
-  proj4dart: ^2.0.0
-  meta: ^1.7.0
-  latlong2: ^0.8.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  lint: ^1.0.0

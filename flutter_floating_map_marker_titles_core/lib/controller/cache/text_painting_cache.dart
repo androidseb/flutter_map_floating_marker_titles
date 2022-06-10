@@ -18,17 +18,17 @@ class _TextPaintingCacheKey {
 
   @override
   int get hashCode {
-    return this.textString.hashCode +
-        this.textColor.hashCode +
-        this.isBoldText.hashCode +
-        this.options.maxTitleLines.hashCode +
-        this.options.maxTitlesWidth.hashCode +
-        this.options.textSize.hashCode;
+    return textString.hashCode +
+        textColor.hashCode +
+        isBoldText.hashCode +
+        options.maxTitleLines.hashCode +
+        options.maxTitlesWidth.hashCode +
+        options.textSize.hashCode;
   }
 
   @override
   bool operator ==(Object other) {
-    if (!(other is _TextPaintingCacheKey)) {
+    if (other is! _TextPaintingCacheKey) {
       return false;
     }
     final _TextPaintingCacheKey o = other;
@@ -72,11 +72,13 @@ class TextPaintingCache {
     final bool isBoldText,
     final FMTOOptions options,
   ) {
-    return _paintersCache.getValue(_TextPaintingCacheKey(
-      textString,
-      textColor,
-      isBoldText,
-      options,
-    ));
+    return _paintersCache.getValue(
+      _TextPaintingCacheKey(
+        textString,
+        textColor,
+        isBoldText,
+        options,
+      ),
+    );
   }
 }
