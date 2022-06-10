@@ -61,7 +61,7 @@ packages:
       name: flutter_floating_map_marker_titles_core
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.0.5+5"
+    version: "0.0.6"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
