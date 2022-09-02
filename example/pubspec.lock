@@ -61,21 +61,21 @@ packages:
       path: "../flutter_floating_map_marker_titles_core"
       relative: true
     source: path
-    version: "0.0.5+5"
+    version: "0.1.0"
   flutter_map:
     dependency: transitive
     description:
       name: flutter_map
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.0"
+    version: "2.2.0"
   flutter_map_floating_marker_titles:
     dependency: "direct overridden"
     description:
       path: "../flutter_map_floating_marker_titles"
       relative: true
     source: path
-    version: "0.0.5+5"
+    version: "0.1.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -101,7 +101,7 @@ packages:
       path: "../google_maps_flutter_floating_marker_titles"
       relative: true
     source: path
-    version: "0.0.5+5"
+    version: "0.1.0"
   google_maps_flutter_platform_interface:
     dependency: transitive
     description:
