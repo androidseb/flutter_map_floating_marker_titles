@@ -1,3 +1,7 @@
+## [0.1.0] - 2022/09/02
+
+* Changed the versioning pattern to leave the last digit for minor non-feature-related changes (e.g. library upgrades)
+
 ## [0.0.6] - 2022/06/11
 
 Added linter rules from the [lint](https://pub.dev/packages/lint) package.
