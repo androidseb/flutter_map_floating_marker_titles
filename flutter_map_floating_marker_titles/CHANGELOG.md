@@ -1,3 +1,8 @@
+## [0.1.0] - 2022/09/02
+
+* Changed the versioning pattern to leave the last digit for minor non-feature-related changes (e.g. library upgrades)
+* Updated dependencies to use flutter_map: ^2.2.0
+
 ## [0.0.6] - 2022/06/11
 
 Updated dependencies to use flutter_map: ^1.0.0
