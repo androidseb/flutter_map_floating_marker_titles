@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -5,18 +7,28 @@ import 'package:flutter_map_floating_marker_titles/flutter_map_floating_marker_t
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 import 'package:positioned_tap_detector_2/positioned_tap_detector_2.dart';
+import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 
-class FlutterMapDemoPage extends AbstractDemoPage<Marker> {
-  static const String route = 'Flutter Map';
+class FlutterMapWithStreamsDemoPage extends AbstractDemoPage<Marker> {
+  static const String route = 'Flutter Map with streams';
 
-  FlutterMapDemoPage({final Key? key}) : super(key: key);
+  FlutterMapWithStreamsDemoPage({final Key? key}) : super(key: key);
   @override
-  _FlutterMapDemoPageState createState() => _FlutterMapDemoPageState();
+  _FlutterMapWithStreamsDemoPageState createState() => _FlutterMapWithStreamsDemoPageState();
 }
 
-class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
+class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> {
   final FMTOMapController mapController = FMTOMapController();
+  final StreamController<List<FloatingMarkerTitleInfo>> _floatingTitlesSC = StreamController();
+  final StreamController<List<Marker>> _markersSC = StreamController();
   double currentRotation = 0;
+
+  @override
+  void addMarker(LatLng latLng) {
+    addMarkerToData(latLng);
+    _markersSC.add(markers);
+    _floatingTitlesSC.add(floatingTitles);
+  }
 
   @override
   Widget buildMapWidget(final BuildContext context, final Function(LatLng) createNewMarkerCallback) {
@@ -45,7 +57,7 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
         ),
         Flexible(
           child: FlutterMapWithFMTO(
-            floatingTitles: floatingTitles,
+            floatingTitlesStream: _floatingTitlesSC.stream,
             fmtoOptions: createFMTOOptions(),
             mapController: mapController,
             options: MapOptions(
@@ -55,11 +67,20 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
                 createNewMarkerCallback(latLng);
               },
             ),
-            layers: [
-              TileLayerOptions(
-                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+            children: [
+              TileLayerWidget(
+                options: TileLayerOptions(
+                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                ),
               ),
-              MarkerLayerOptions(markers: markers),
+              StreamBuilder(
+                stream: _markersSC.stream,
+                builder: (context, snapshot) {
+                  return MarkerLayerWidget(
+                    options: MarkerLayerOptions(markers: markers),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -97,6 +118,6 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
 
   @override
   String getPageRouteString() {
-    return FlutterMapDemoPage.route;
+    return FlutterMapWithStreamsDemoPage.route;
   }
 }

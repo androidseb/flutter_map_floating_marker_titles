@@ -43,11 +43,12 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
   final bool? _trafficEnabled;
   final bool? _buildingsEnabled;
 
-  factory GoogleMapWithFMTO(
-    final List<FloatingMarkerTitleInfo> floatingTitles, {
+  factory GoogleMapWithFMTO({
     required final FMTOOptions fmtoOptions,
-    final Key? key,
     required final CameraPosition initialCameraPosition,
+    final Key? key,
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
     final MapCreatedCallback? onMapCreated,
     final Set<Factory<OneSequenceGestureRecognizer>>? gestureRecognizers,
     final bool compassEnabled = true,
@@ -79,7 +80,6 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
   }) {
     return GoogleMapWithFMTO._internal(
       _GoogleMapMVI(fmtoOptions.mapProjectionsCacheSize),
-      floatingTitles,
       fmtoOptions,
       key,
       initialCameraPosition,
@@ -111,12 +111,13 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
       indoorViewEnabled,
       trafficEnabled,
       buildingsEnabled,
+      floatingTitles: floatingTitles,
+      floatingTitlesStream: floatingTitlesStream,
     );
   }
 
   GoogleMapWithFMTO._internal(
     final _GoogleMapMVI mapViewInterface,
-    final List<FloatingMarkerTitleInfo> floatingTitles,
     final FMTOOptions fmtoOptions,
     final Key? key,
     this._initialCameraPosition,
@@ -147,12 +148,15 @@ class GoogleMapWithFMTO extends AbstractMapViewWrapper<_GoogleMapMVI> {
     this._myLocationButtonEnabled,
     this._indoorViewEnabled,
     this._trafficEnabled,
-    this._buildingsEnabled,
-  ) : super(
+    this._buildingsEnabled, {
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
+  }) : super(
           mapViewInterface,
-          floatingTitles,
           fmtoOptions,
           key: key,
+          floatingTitles: floatingTitles,
+          floatingTitlesStream: floatingTitlesStream,
         ) {
     mapViewInterface.cameraPosition = this._initialCameraPosition;
   }

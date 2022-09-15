@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map_with_streams.dart';
 import 'package:flutter_floating_map_marker_titles_demo/pages/google_maps.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 
@@ -33,6 +34,12 @@ Drawer buildDrawer(final BuildContext context, final String currentRoute) {
           context,
           const Text(demo_data.FLUTTER_MAP_PAGE_TITLE),
           FlutterMapDemoPage.route,
+          currentRoute,
+        ),
+        _buildMenuItem(
+          context,
+          const Text(demo_data.FLUTTER_MAP_WITH_STREAMS_PAGE_TITLE),
+          FlutterMapWithStreamsDemoPage.route,
           currentRoute,
         ),
         _buildMenuItem(

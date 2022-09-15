@@ -38,7 +38,7 @@ class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
       children: [
         Flexible(
           child: GoogleMapWithFMTO(
-            floatingTitles,
+            floatingTitles: floatingTitles,
             fmtoOptions: createFMTOOptions(),
             initialCameraPosition: CameraPosition(
               target: LatLng(

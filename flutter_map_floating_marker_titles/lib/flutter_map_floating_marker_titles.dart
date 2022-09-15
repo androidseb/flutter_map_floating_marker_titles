@@ -17,11 +17,12 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final List<Widget> _children;
   final List<Widget> _nonRotatedChildren;
 
-  factory FlutterMapWithFMTO(
-    final List<FloatingMarkerTitleInfo> floatingTitles, {
+  factory FlutterMapWithFMTO({
     required final FMTOOptions fmtoOptions,
-    final Key? key,
     required final MapOptions options,
+    final Key? key,
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
     final List<LayerOptions> layers = const [],
     final List<LayerOptions> nonRotatedLayers = const [],
     final List<Widget> children = const [],
@@ -30,7 +31,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   }) {
     return FlutterMapWithFMTO._internal(
       _FlutterMapMVI(mapController ?? FMTOMapController(), fmtoOptions.mapProjectionsCacheSize),
-      floatingTitles,
       fmtoOptions,
       key,
       options,
@@ -38,24 +38,28 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       nonRotatedLayers,
       children,
       nonRotatedChildren,
+      floatingTitles: floatingTitles,
+      floatingTitlesStream: floatingTitlesStream,
     );
   }
 
   FlutterMapWithFMTO._internal(
     final _FlutterMapMVI mapViewInterface,
-    final List<FloatingMarkerTitleInfo> floatingTitles,
     final FMTOOptions fmtoOptions,
     final Key? key,
     this._mapOptions,
     this._layers,
     this._nonRotatedLayers,
     this._children,
-    this._nonRotatedChildren,
-  ) : super(
+    this._nonRotatedChildren, {
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
+  }) : super(
           mapViewInterface,
-          floatingTitles,
           fmtoOptions,
           key: key,
+          floatingTitles: floatingTitles,
+          floatingTitlesStream: floatingTitlesStream,
         );
 
   @override

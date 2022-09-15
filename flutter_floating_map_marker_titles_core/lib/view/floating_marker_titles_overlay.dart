@@ -9,13 +9,15 @@ class FlutterMapFloatingMarkerTitlesOverlay extends StatefulWidget {
 
   FlutterMapFloatingMarkerTitlesOverlay(
     final AbstractMapViewInterface mapViewInterface,
-    final List<FloatingMarkerTitleInfo> floatingTitles,
     final FMTOOptions fmtoOptions, {
     final Key? key,
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
   })  : _fmtoController = FMTOController(
           mapViewInterface,
-          floatingTitles,
           fmtoOptions,
+          floatingTitles: floatingTitles,
+          floatingTitlesStream: floatingTitlesStream,
         ),
         super(key: key);
 

@@ -6,14 +6,16 @@ import 'package:flutter_floating_map_marker_titles_core/view/floating_marker_tit
 
 abstract class AbstractMapViewWrapper<T extends AbstractMapViewInterface> extends StatelessWidget {
   final T _mapViewInterface;
-  final List<FloatingMarkerTitleInfo> _floatingTitles;
   final FMTOOptions _fmtoOptions;
+  final List<FloatingMarkerTitleInfo>? floatingTitles;
+  final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream;
 
   const AbstractMapViewWrapper(
     this._mapViewInterface,
-    this._floatingTitles,
     this._fmtoOptions, {
     Key? key,
+    this.floatingTitles,
+    this.floatingTitlesStream,
   }) : super(key: key);
 
   Widget buildMapView(final BuildContext context, final T mapViewInterface);
@@ -25,8 +27,9 @@ abstract class AbstractMapViewWrapper<T extends AbstractMapViewInterface> extend
         buildMapView(context, _mapViewInterface),
         FlutterMapFloatingMarkerTitlesOverlay(
           _mapViewInterface,
-          _floatingTitles,
           _fmtoOptions,
+          floatingTitles: floatingTitles,
+          floatingTitlesStream: floatingTitlesStream,
         ),
       ],
     );

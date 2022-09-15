@@ -73,24 +73,26 @@ class FMTOOptions {
 
 class FMTOController {
   final AbstractMapViewInterface _mapViewInterface;
-  final List<FloatingMarkerTitleInfo> _floatingTitles;
   final Map<int, FloatingMarkerTitleInfo> _titlesMap;
   final TextPaintingCache _textPaintingCache;
   final TitlesDisplayState _titlesDisplayState;
   final FMTOOptions fmtoOptions;
+  List<FloatingMarkerTitleInfo> _floatingTitles;
 
   String? _lastMapViewTitlesPerspectiveValue;
   Function(double transparentLayerOpacity)? _onTransparentTitlesOpacityChanged;
 
   FMTOController(
     this._mapViewInterface,
-    this._floatingTitles,
-    final FMTOOptions options,
-  )   : fmtoOptions = options,
+    final FMTOOptions options, {
+    final List<FloatingMarkerTitleInfo>? floatingTitles,
+    final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
+  })  : fmtoOptions = options,
         _titlesMap = {},
+        _floatingTitles = floatingTitles ?? [],
         _textPaintingCache = TextPaintingCache(options.textPaintingCacheSize),
         _titlesDisplayState = TitlesDisplayState() {
-    _updateTitlesMap();
+    _updateTitlesMap(floatingTitlesStream?.asBroadcastStream());
   }
 
   void setOnTransparentTitlesOpacityChanged(
@@ -99,9 +101,24 @@ class FMTOController {
     _onTransparentTitlesOpacityChanged = onTransparentTitlesOpacityChanged;
   }
 
-  Future<void> _updateTitlesMap() async {
-    for (final FloatingMarkerTitleInfo fmti in _floatingTitles) {
-      _titlesMap[fmti.id] = fmti;
+  Future<void> _updateTitlesMap(final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream) async {
+    do {
+      for (final FloatingMarkerTitleInfo fmti in _floatingTitles) {
+        _titlesMap[fmti.id] = fmti;
+      }
+    } while (await _attemptUpdateFromStream(floatingTitlesStream));
+  }
+
+  Future<bool> _attemptUpdateFromStream(final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream) async {
+    if (floatingTitlesStream == null) {
+      return false;
+    }
+    try {
+      _floatingTitles = await floatingTitlesStream.first;
+      _titlesMap.clear();
+      return true;
+    } catch (_) {
+      return false;
     }
   }
 
