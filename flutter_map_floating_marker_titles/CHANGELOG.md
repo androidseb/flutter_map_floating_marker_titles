@@ -1,3 +1,7 @@
+## [0.2.0] - 2022/09/15
+
+* Added the ability to set floating marker titles with a stream with the `floatingTitlesStream` parameter
+
 ## [0.1.0] - 2022/09/02
 
 * Changed the versioning pattern to leave the last digit for minor non-feature-related changes (e.g. library upgrades)
