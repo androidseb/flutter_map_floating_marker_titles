@@ -62,7 +62,7 @@ floatingTitles.add(FloatingMarkerTitleInfo(
 
 ```dart
 FlutterMapWithFMTO(
-  floatingTitles,
+  floatingTitles: floatingTitles,
   fmtoOptions: fmtoOptions,
   // ... other than the 2 above option, this widget takes
   // exactly the same props as the FlutterMap widget.
@@ -82,7 +82,7 @@ FlutterMapWithFMTO(
 
 ```dart
 GoogleMapWithFMTO(
-  floatingTitles,
+  floatingTitles: floatingTitles,
   fmtoOptions: fmtoOptions,
   // ... other than the 2 above option, this widget takes
   // exactly the same props as the GoogleMap widget.
