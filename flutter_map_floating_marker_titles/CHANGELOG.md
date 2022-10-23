@@ -1,3 +1,7 @@
+## [0.3.0] - 2022/10/23
+
+* Improved the logic handling the appearance for higher z-index titles
+
 ## [0.2.0] - 2022/09/15
 
 * Added the ability to set floating marker titles with a stream with the `floatingTitlesStream` parameter
