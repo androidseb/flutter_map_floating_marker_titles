@@ -261,20 +261,26 @@ class FMTOController {
     );
   }
 
-  void _updateDisplayStateForCurrentlyDisplayedTitles(final Size size) {
+  /// Updates the display state for all already currently displayed tiles and returns the lowest z-index found
+  /// among all displayed titles
+  int _updateDisplayStateForCurrentlyDisplayedTitles(final Size size) {
+    int? currentTitlesLowestZIndex;
     final String newMapViewTitlesPerspectiveValue = _mapViewInterface.getMapViewTitlesPerspectiveValue();
     final bool resolveTitlesCollisions = _lastMapViewTitlesPerspectiveValue != newMapViewTitlesPerspectiveValue;
     _lastMapViewTitlesPerspectiveValue = newMapViewTitlesPerspectiveValue;
     final Iterable<TitleDisplayInfo> currentlyDisplayedTitles = List.from(_titlesDisplayState.titleDisplayInfos);
     for (final TitleDisplayInfo tdi in currentlyDisplayedTitles) {
       _updateDisplayStateWithTitleInfo(tdi.floatingMarkerTitleInfo, size, resolveTitlesCollisions);
+      final int zIndex = tdi.floatingMarkerTitleInfo.zIndex;
+      currentTitlesLowestZIndex ??= zIndex;
+      if (zIndex < currentTitlesLowestZIndex) {
+        currentTitlesLowestZIndex = zIndex;
+      }
     }
+    return currentTitlesLowestZIndex ?? 0;
   }
 
-  void _updateDisplayStateByCheckingMoreTitles(final Size size) {
-    if (_titlesDisplayState.titlesCount >= fmtoOptions.maxTitlesCount) {
-      return;
-    }
+  void _updateDisplayStateByCheckingMoreTitles(final Size size, final int currentTitlesLowestZIndex) {
     final int titlesToCheck = math.min(_floatingTitles.length, fmtoOptions.titlesToCheckPerFrame);
     if (titlesToCheck <= 0) {
       return;
@@ -284,10 +290,8 @@ class FMTOController {
     for (int i = startIndex; i < endIndex; i++) {
       final int saneIndex = i % _floatingTitles.length;
       final FloatingMarkerTitleInfo fmti = _floatingTitles[saneIndex];
-      _updateDisplayStateWithTitleInfo(fmti, size, true);
-      // ignore: invariant_booleans
-      if (_titlesDisplayState.titlesCount >= fmtoOptions.maxTitlesCount) {
-        break;
+      if (_titlesDisplayState.titlesCount < fmtoOptions.maxTitlesCount || fmti.zIndex > currentTitlesLowestZIndex) {
+        _updateDisplayStateWithTitleInfo(fmti, size, true);
       }
     }
     _titlesDisplayState.currentTitleIndex = endIndex;
@@ -325,8 +329,8 @@ class FMTOController {
 
   void _updateDisplayState(final Size size) {
     _titlesDisplayState.removeObsoleteTitles(_titlesMap.keys);
-    _updateDisplayStateForCurrentlyDisplayedTitles(size);
-    _updateDisplayStateByCheckingMoreTitles(size);
+    final int currentTitlesLowestZIndex = _updateDisplayStateForCurrentlyDisplayedTitles(size);
+    _updateDisplayStateByCheckingMoreTitles(size, currentTitlesLowestZIndex);
     _updateDisplayStateTitlesWorkflow();
   }
 
