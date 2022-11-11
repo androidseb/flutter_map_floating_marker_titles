@@ -56,10 +56,7 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> 
           ),
         ),
         Flexible(
-          child: FlutterMapWithFMTO(
-            floatingTitlesStream: _floatingTitlesSC.stream,
-            floatingTitles: floatingTitles,
-            fmtoOptions: createFMTOOptions(),
+          child: FlutterMap(
             mapController: mapController,
             options: MapOptions(
               center: demo_data.INITIAL_MAP_LOCATION,
@@ -80,6 +77,13 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> 
                     markers: markers,
                   );
                 },
+              ),
+            ],
+            nonRotatedChildren: [
+              FloatingMarkerTitlesLayer(
+                floatingTitlesStream: _floatingTitlesSC.stream,
+                floatingTitles: floatingTitles,
+                fmtoOptions: createFMTOOptions(),
               ),
             ],
           ),
