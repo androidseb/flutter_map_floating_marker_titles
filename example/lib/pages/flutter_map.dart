@@ -44,7 +44,9 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
           ),
         ),
         Flexible(
-          child: FlutterMap(
+          child: FlutterMapWithFMTO(
+            floatingTitles: floatingTitles,
+            fmtoOptions: createFMTOOptions(),
             mapController: mapController,
             options: MapOptions(
               center: demo_data.INITIAL_MAP_LOCATION,
@@ -60,12 +62,6 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
               ),
               MarkerLayer(
                 markers: markers,
-              ),
-            ],
-            nonRotatedChildren: [
-              FloatingMarkerTitlesLayer(
-                floatingTitles: floatingTitles,
-                fmtoOptions: createFMTOOptions(),
               ),
             ],
           ),

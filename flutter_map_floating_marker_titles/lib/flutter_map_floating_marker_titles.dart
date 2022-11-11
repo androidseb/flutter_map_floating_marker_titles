@@ -7,13 +7,9 @@ import 'package:flutter_floating_map_marker_titles_core/controller/map_view_inte
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_floating_map_marker_titles_core/view/floating_marker_titles_overlay.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 
-/// Deprecated, use FloatingMarkerTitlesLayer. For an example, see:
-/// https://github.com/androidseb/flutter_map_floating_marker_titles/blob/main/example/lib/pages/flutter_map.dart
-@deprecated
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
   final List<Widget> _children;
@@ -110,58 +106,5 @@ class _FlutterMapMVI extends AbstractCZRMapViewInterface {
   @override
   double getMapViewRotationDegrees() {
     return mapController.rotation;
-  }
-}
-
-class _FlutterMapStateMVI extends AbstractCZRMapViewInterface {
-  FlutterMapState flutterMapState;
-
-  _FlutterMapStateMVI(
-    this.flutterMapState,
-    final int projCacheSize,
-  ) : super(projCacheSize);
-
-  @override
-  LatLng getMapViewCenter() {
-    return flutterMapState.center;
-  }
-
-  @override
-  double getMapViewZoom() {
-    return flutterMapState.zoom;
-  }
-
-  @override
-  double getMapViewRotationDegrees() {
-    return flutterMapState.rotation;
-  }
-}
-
-class FloatingMarkerTitlesLayer extends StatelessWidget {
-  final Key? key;
-  final FMTOOptions fmtoOptions;
-  final List<FloatingMarkerTitleInfo>? floatingTitles;
-  final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream;
-
-  FloatingMarkerTitlesLayer({
-    this.key,
-    required this.fmtoOptions,
-    this.floatingTitles,
-    this.floatingTitlesStream,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final FlutterMapState? flutterMapState = FlutterMapState.maybeOf(context, nullOk: true);
-    if (flutterMapState == null) {
-      return SizedBox.shrink();
-    } else {
-      return FlutterMapFloatingMarkerTitlesOverlay(
-        _FlutterMapStateMVI(flutterMapState, fmtoOptions.mapProjectionsCacheSize),
-        fmtoOptions,
-        floatingTitles: floatingTitles,
-        floatingTitlesStream: floatingTitlesStream,
-      );
-    }
   }
 }
