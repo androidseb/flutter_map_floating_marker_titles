@@ -1,3 +1,7 @@
+## [0.4.0] - 2022/11/11
+
+* Updated flutter_map dependency to flutter_map: ^3.0.0
+
 ## [0.3.0] - 2022/10/23
 
 * Improved the logic handling the appearance for higher z-index titles
