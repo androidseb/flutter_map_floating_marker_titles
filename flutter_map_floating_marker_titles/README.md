@@ -14,7 +14,7 @@ FlutterMapWithFMTO(
     center: LatLng(0, 0),
     zoom: 13,
   ),
-  layers: [
+  children: [
     TileLayer(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     ),
