@@ -55,11 +55,14 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
                 createNewMarkerCallback(latLng);
               },
             ),
-            layers: [
-              TileLayerOptions(
+            children: [
+              TileLayer(
                 urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.flutter_map_floating_marker_titles.example',
               ),
-              MarkerLayerOptions(markers: markers),
+              MarkerLayer(
+                markers: markers,
+              ),
             ],
           ),
         ),

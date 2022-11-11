@@ -12,8 +12,6 @@ import 'package:latlong2/latlong.dart';
 
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
-  final List<LayerOptions> _layers;
-  final List<LayerOptions> _nonRotatedLayers;
   final List<Widget> _children;
   final List<Widget> _nonRotatedChildren;
 
@@ -23,8 +21,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Key? key,
     final List<FloatingMarkerTitleInfo>? floatingTitles,
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
-    final List<LayerOptions> layers = const [],
-    final List<LayerOptions> nonRotatedLayers = const [],
     final List<Widget> children = const [],
     final List<Widget> nonRotatedChildren = const [],
     final FMTOMapController? mapController,
@@ -34,8 +30,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       fmtoOptions,
       key,
       options,
-      layers,
-      nonRotatedLayers,
       children,
       nonRotatedChildren,
       floatingTitles: floatingTitles,
@@ -48,8 +42,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final FMTOOptions fmtoOptions,
     final Key? key,
     this._mapOptions,
-    this._layers,
-    this._nonRotatedLayers,
     this._children,
     this._nonRotatedChildren, {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
@@ -66,8 +58,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   Widget buildMapView(final BuildContext context, final _FlutterMapMVI mapViewInterface) {
     return FlutterMap(
       options: _mapOptions,
-      layers: _layers,
-      nonRotatedLayers: _nonRotatedLayers,
       children: _children,
       nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
@@ -76,10 +66,10 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
 }
 
 class FMTOMapController extends MapControllerImpl {
-  MapState? _state;
+  FlutterMapState? _state;
 
   @override
-  set state(final MapState state) {
+  set state(final FlutterMapState state) {
     _state = state;
     super.state = state;
   }

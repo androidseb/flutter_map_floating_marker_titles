@@ -68,16 +68,15 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> 
               },
             ),
             children: [
-              TileLayerWidget(
-                options: TileLayerOptions(
-                  urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                ),
+              TileLayer(
+                urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                userAgentPackageName: 'com.flutter_map_floating_marker_titles.example',
               ),
               StreamBuilder(
                 stream: _markersSC.stream,
                 builder: (context, snapshot) {
-                  return MarkerLayerWidget(
-                    options: MarkerLayerOptions(markers: markers),
+                  return MarkerLayer(
+                    markers: markers,
                   );
                 },
               ),
