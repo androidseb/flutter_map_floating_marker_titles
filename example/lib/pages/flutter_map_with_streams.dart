@@ -58,6 +58,7 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> 
         Flexible(
           child: FlutterMapWithFMTO(
             floatingTitlesStream: _floatingTitlesSC.stream,
+            floatingTitles: floatingTitles,
             fmtoOptions: createFMTOOptions(),
             mapController: mapController,
             options: MapOptions(
