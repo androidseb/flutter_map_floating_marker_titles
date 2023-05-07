@@ -1,3 +1,7 @@
+## [0.4.1] - 2023/05/07
+
+* Updated flutter_map dependency to flutter_map: ^4.0.0
+
 ## [0.4.0] - 2022/11/11
 
 * Updated flutter_map dependency to flutter_map: ^3.0.0
