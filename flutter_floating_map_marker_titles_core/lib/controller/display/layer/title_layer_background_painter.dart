@@ -4,11 +4,11 @@ import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controll
 
 class TitleLayerBackgroundPainter extends TitleLayerPainter {
   TitleLayerBackgroundPainter(
-    final String textString,
-    final Color textColor,
-    final bool isBoldText,
-    final FMTOOptions fmtoOptions,
-  ) : super(textString, textColor, isBoldText, fmtoOptions);
+    super.textString,
+    super.textColor,
+    super.isBoldText,
+    super.fmtoOptions,
+  );
 
   @override
   TextSpan buildText(

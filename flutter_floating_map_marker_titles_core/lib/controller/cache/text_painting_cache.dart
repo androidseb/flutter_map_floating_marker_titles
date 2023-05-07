@@ -42,7 +42,7 @@ class _TextPaintingCacheKey {
 }
 
 class _TextPaintingCacheImpl extends CachedCalculator<_TextPaintingCacheKey, FloatingTitlePainter> {
-  _TextPaintingCacheImpl(final int cacheMaxSize) : super(cacheMaxSize);
+  _TextPaintingCacheImpl(super.cacheMaxSize);
 
   @override
   FloatingTitlePainter calculateValue(final _TextPaintingCacheKey key) {

@@ -11,3 +11,4 @@ linter:
     avoid_positional_boolean_parameters: false
     avoid_classes_with_only_static_members: false
     use_setters_to_change_properties: false
+    avoid_final_parameters: false

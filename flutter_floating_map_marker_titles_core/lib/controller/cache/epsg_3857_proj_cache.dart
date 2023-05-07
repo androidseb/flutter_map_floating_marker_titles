@@ -30,7 +30,7 @@ class _Epsg3857ProjCacheKey {
 class _Epsg3857ProjCacheImpl extends CachedCalculator<_Epsg3857ProjCacheKey, math.Point<num>> {
   static const Epsg3857 mapProjection = Epsg3857();
 
-  _Epsg3857ProjCacheImpl(final int cacheMaxSize) : super(cacheMaxSize);
+  _Epsg3857ProjCacheImpl(super.cacheMaxSize);
 
   @override
   math.Point<num> calculateValue(final _Epsg3857ProjCacheKey key) {
