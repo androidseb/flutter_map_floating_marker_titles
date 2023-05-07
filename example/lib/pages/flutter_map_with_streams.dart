@@ -6,7 +6,6 @@ import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_floating_marker_titles/flutter_map_floating_marker_titles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
-import 'package:positioned_tap_detector_2/positioned_tap_detector_2.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 
 class FlutterMapWithStreamsDemoPage extends AbstractDemoPage<Marker> {
