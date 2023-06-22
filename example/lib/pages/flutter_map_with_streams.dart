@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_flutter_map_demo_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_floating_marker_titles/flutter_map_floating_marker_titles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 
-class FlutterMapWithStreamsDemoPage extends AbstractDemoPage<Marker> {
+class FlutterMapWithStreamsDemoPage extends AbstractFlutterMapDemoPage {
   static const String route = 'Flutter Map with streams';
 
   FlutterMapWithStreamsDemoPage({final Key? key}) : super(key: key);
@@ -16,11 +16,9 @@ class FlutterMapWithStreamsDemoPage extends AbstractDemoPage<Marker> {
   _FlutterMapWithStreamsDemoPageState createState() => _FlutterMapWithStreamsDemoPageState();
 }
 
-class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> {
-  final FMTOMapController mapController = FMTOMapController();
+class _FlutterMapWithStreamsDemoPageState extends AbstractFlutterMapDemoPageState {
   final StreamController<List<FloatingMarkerTitleInfo>> _floatingTitlesSC = StreamController();
   final StreamController<List<Marker>> _markersSC = StreamController();
-  double currentRotation = 0;
 
   @override
   void addMarker(LatLng latLng) {
@@ -84,24 +82,6 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractDemoPageState<Marker> 
           ),
         ),
       ],
-    );
-  }
-
-  @override
-  Marker createMarker(final LatLng latLng) {
-    return Marker(
-      point: latLng,
-      width: 14,
-      height: 20,
-      anchorPos: AnchorPos.align(AnchorAlign.top),
-      builder: (ctx) => Container(
-        child: Image.asset(
-          demo_data.MARKER_ICON_ASSET_PATH,
-          fit: BoxFit.fitHeight,
-          width: 28,
-          height: 40,
-        ),
-      ),
     );
   }
 

@@ -1,3 +1,8 @@
+## [1.0.0] - 2023/06/22
+
+* Updated the semantic version prefix to "officially stable" 1.X.X, because this library has been successful in a production app (see https://mapmarker.app) used by thousands of daily users for several months
+* Updated latlong2 dependency to latlong2: ^0.9.0
+
 ## [0.3.0] - 2022/10/23
 
 * Improved the logic handling the appearance for higher z-index titles

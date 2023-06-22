@@ -9,6 +9,9 @@ import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_w
 import 'package:flutter/material.dart';
 import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
+import 'dart:async';
+
+part 'flutter_map_controller.dart';
 
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
@@ -65,16 +68,16 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   }
 }
 
-class FMTOMapController extends MapControllerImpl {
-  FlutterMapState? _state;
+class FMTOMapController extends _MapControllerImpl {
+  FlutterMapState? _fmtoMapControllerState;
 
   @override
   set state(final FlutterMapState state) {
-    _state = state;
+    _fmtoMapControllerState = state;
     super.state = state;
   }
 
-  double get rotation => _state?.rotation ?? 0;
+  double get rotation => _fmtoMapControllerState?.rotation ?? 0;
 }
 
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {

@@ -1,3 +1,9 @@
+## [1.0.0] - 2023/06/22
+
+* Updated the semantic version prefix to "officially stable" 1.X.X, because this library has been successful in a production app (see https://mapmarker.app) used by thousands of daily users for several months
+* Updated flutter_map dependency to flutter_map: ^5.0.0
+* Updated latlong2 dependency to latlong2: ^0.9.0
+
 ## [0.4.1] - 2023/05/07
 
 * Updated flutter_map dependency to flutter_map: ^4.0.0

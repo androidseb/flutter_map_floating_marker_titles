@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_flutter_map_demo_page.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_floating_marker_titles/flutter_map_floating_marker_titles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 
-class FlutterMapDemoPage extends AbstractDemoPage<Marker> {
+class FlutterMapDemoPage extends AbstractFlutterMapDemoPage {
   static const String route = 'Flutter Map';
 
   FlutterMapDemoPage({final Key? key}) : super(key: key);
@@ -13,10 +13,7 @@ class FlutterMapDemoPage extends AbstractDemoPage<Marker> {
   _FlutterMapDemoPageState createState() => _FlutterMapDemoPageState();
 }
 
-class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
-  final FMTOMapController mapController = FMTOMapController();
-  double currentRotation = 0;
-
+class _FlutterMapDemoPageState extends AbstractFlutterMapDemoPageState {
   @override
   Widget buildMapWidget(final BuildContext context, final Function(LatLng) createNewMarkerCallback) {
     return Column(
@@ -66,24 +63,6 @@ class _FlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
           ),
         ),
       ],
-    );
-  }
-
-  @override
-  Marker createMarker(final LatLng latLng) {
-    return Marker(
-      point: latLng,
-      width: 14,
-      height: 20,
-      anchorPos: AnchorPos.align(AnchorAlign.top),
-      builder: (ctx) => Container(
-        child: Image.asset(
-          demo_data.MARKER_ICON_ASSET_PATH,
-          fit: BoxFit.fitHeight,
-          width: 28,
-          height: 40,
-        ),
-      ),
     );
   }
 

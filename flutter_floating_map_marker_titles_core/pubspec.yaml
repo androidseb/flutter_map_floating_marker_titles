@@ -1,6 +1,6 @@
 name: flutter_floating_map_marker_titles_core
 description: Flutter Floating Map Marker Titles Core library
-version: 0.3.0
+version: 1.0.0
 repository: https://github.com/androidseb/flutter_map_floating_marker_titles
 
 environment:
@@ -12,7 +12,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  latlong2: ^0.8.1
+  latlong2: ^0.9.0
   meta: ^1.7.0
   proj4dart: ^2.0.0
   tuple: ^2.0.0
@@ -21,4 +21,4 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  lint: ^2.0.1
+  lint: 2.1.2
