@@ -55,12 +55,12 @@ class _FlutterMapWithStreamsDemoPageState extends AbstractFlutterMapDemoPageStat
         Flexible(
           child: FlutterMapWithFMTO(
             floatingTitlesStream: _floatingTitlesSC.stream,
-                floatingTitles: floatingTitles,
-                fmtoOptions: createFMTOOptions(),
+            floatingTitles: floatingTitles,
+            fmtoOptions: createFMTOOptions(),
             mapController: mapController,
             options: MapOptions(
-              center: demo_data.INITIAL_MAP_LOCATION,
-              zoom: demo_data.INITIAL_MAP_ZOOM,
+              initialCenter: demo_data.INITIAL_MAP_LOCATION,
+              initialZoom: demo_data.INITIAL_MAP_ZOOM,
               onTap: (final TapPosition tapPosition, final LatLng latLng) {
                 createNewMarkerCallback(latLng);
               },

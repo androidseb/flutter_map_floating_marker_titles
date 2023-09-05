@@ -11,8 +11,6 @@ import 'package:flutter_map/plugin_api.dart';
 import 'package:latlong2/latlong.dart';
 import 'dart:async';
 
-part 'flutter_map_controller.dart';
-
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
   final List<Widget> _children;
@@ -26,10 +24,10 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
     final List<Widget> children = const [],
     final List<Widget> nonRotatedChildren = const [],
-    final FMTOMapController? mapController,
+    final MapController? mapController,
   }) {
     return FlutterMapWithFMTO._internal(
-      _FlutterMapMVI(mapController ?? FMTOMapController(), fmtoOptions.mapProjectionsCacheSize),
+      _FlutterMapMVI(mapController ?? MapController(), fmtoOptions.mapProjectionsCacheSize),
       fmtoOptions,
       key,
       options,
@@ -68,20 +66,8 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   }
 }
 
-class FMTOMapController extends _MapControllerImpl {
-  FlutterMapState? _fmtoMapControllerState;
-
-  @override
-  set state(final FlutterMapState state) {
-    _fmtoMapControllerState = state;
-    super.state = state;
-  }
-
-  double get rotation => _fmtoMapControllerState?.rotation ?? 0;
-}
-
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {
-  FMTOMapController mapController;
+  MapController mapController;
 
   _FlutterMapMVI(
     this.mapController,
@@ -98,16 +84,16 @@ class _FlutterMapMVI extends AbstractCZRMapViewInterface {
 
   @override
   LatLng getMapViewCenter() {
-    return mapController.center;
+    return mapController.camera.center;
   }
 
   @override
   double getMapViewZoom() {
-    return mapController.zoom;
+    return mapController.camera.zoom;
   }
 
   @override
   double getMapViewRotationDegrees() {
-    return mapController.rotation;
+    return mapController.camera.rotation;
   }
 }

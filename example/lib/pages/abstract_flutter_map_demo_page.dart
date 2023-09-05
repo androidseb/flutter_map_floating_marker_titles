@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
 import 'package:flutter_map/flutter_map.dart';
-import 'package:flutter_map_floating_marker_titles/flutter_map_floating_marker_titles.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 
@@ -10,7 +9,7 @@ abstract class AbstractFlutterMapDemoPage extends AbstractDemoPage<Marker> {
 }
 
 abstract class AbstractFlutterMapDemoPageState extends AbstractDemoPageState<Marker> {
-  final FMTOMapController mapController = FMTOMapController();
+  final MapController mapController = MapController();
   double currentRotation = 0;
 
   @override

@@ -45,8 +45,8 @@ class _FlutterMapDemoPageState extends AbstractFlutterMapDemoPageState {
             fmtoOptions: createFMTOOptions(),
             mapController: mapController,
             options: MapOptions(
-              center: demo_data.INITIAL_MAP_LOCATION,
-              zoom: demo_data.INITIAL_MAP_ZOOM,
+              initialCenter: demo_data.INITIAL_MAP_LOCATION,
+              initialZoom: demo_data.INITIAL_MAP_ZOOM,
               onTap: (final TapPosition tapPosition, final LatLng latLng) {
                 createNewMarkerCallback(latLng);
               },

@@ -16,7 +16,7 @@ dependencies:
   # Uncomment and use this a dependency when working locally
   #flutter_floating_map_marker_titles_core:
   #  path: ../flutter_floating_map_marker_titles_core
-  flutter_map: ^5.0.0
+  flutter_map: 6.0.0-dev.3
 
 dev_dependencies:
   flutter_test:

@@ -14,7 +14,7 @@ dependencies:
   flutter:
     sdk: flutter
   google_maps_flutter: ^2.2.0
-  flutter_map: ^5.0.0
+  flutter_map: 6.0.0-dev.3
 
 # Dependency overrides for the demo app, you would normally use this in dependencies:
 #  flutter_floating_map_marker_titles_core: ^X.Y.Z+1
