@@ -14,7 +14,7 @@ GoogleMapWithFMTO(
     target: LatLng(0, 0),
     zoom: 13,
   ),
-),
+)
 ```
 
 See the [how-to](https://github.com/androidseb/flutter_map_floating_marker_titles#how-to-use-this-library-in-your-code) section of the main project for more details.

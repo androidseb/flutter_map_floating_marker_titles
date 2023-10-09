@@ -5,8 +5,9 @@ Floating Map Marker Titles for [flutter_map](https://github.com/fleaflet/flutter
 ## Code example
 
 ```dart
+// With the FlutterMapWithFMTO widget as a FlutterMap wrapper
 FlutterMapWithFMTO(
-  floatingTitles,
+  floatingTitles: floatingTitles,
   fmtoOptions: fmtoOptions,
   // ... other than the 2 above option, this widget takes
   // exactly the same props as the FlutterMap widget.
@@ -19,7 +20,24 @@ FlutterMapWithFMTO(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     ),
   ],
-),
+)
+
+// Or with the FloatingMarkerTitlesLayer widget as a FlutterMap layer
+FlutterMap(
+  options: MapOptions(
+    center: LatLng(0, 0),
+    zoom: 13,
+  ),
+  children: [
+    TileLayer(
+      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    ),
+    FloatingMarkerTitlesLayer(
+      floatingTitles: floatingTitles,
+      fmtoOptions: fmtoOptions,
+    ),
+  ],
+)
 ```
 
 See the [how-to](https://github.com/androidseb/flutter_map_floating_marker_titles#how-to-use-this-library-in-your-code) section of the main project for more details.
