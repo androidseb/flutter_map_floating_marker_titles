@@ -1,6 +1,7 @@
-## [1.1.0] - 2023/09/??
+## [1.1.0] - 2023/10/09
 
 * Updated flutter_map dependency to flutter_map: ^6.0.0
+* Added the `FloatingMarkerTitlesLayer` widget to use in flutter_map as a layer
 
 ## [1.0.0] - 2023/06/22
 

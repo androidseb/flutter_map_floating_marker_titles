@@ -2,9 +2,10 @@ library flutter_map_floating_marker_titles;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
+import 'package:flutter_floating_map_marker_titles_core/view/floating_marker_titles_overlay.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
@@ -48,7 +49,7 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       'Append all of these children to `children`. '
       'This property has been removed to simplify the way layers are inserted '
       'into the map, and allow for greater flexibility of layer positioning. '
-      'This property is deprecated since v6.',
+      'This property is deprecated since flutter_map v6.',
     )
     this._nonRotatedChildren, {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
@@ -69,6 +70,31 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       // ignore: deprecated_member_use
       nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
+    );
+  }
+}
+
+class FloatingMarkerTitlesLayer extends StatelessWidget {
+  final FMTOOptions fmtoOptions;
+  final List<FloatingMarkerTitleInfo>? floatingTitles;
+  final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream;
+
+  const FloatingMarkerTitlesLayer({
+    required this.fmtoOptions,
+    super.key,
+    this.floatingTitles,
+    this.floatingTitlesStream,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final MapController mapController = MapController.of(context);
+    final _FlutterMapMVI _mapViewInterface = _FlutterMapMVI(mapController, fmtoOptions.mapProjectionsCacheSize);
+    return FlutterMapFloatingMarkerTitlesOverlay(
+      _mapViewInterface,
+      fmtoOptions,
+      floatingTitles: floatingTitles,
+      floatingTitlesStream: floatingTitlesStream,
     );
   }
 }
