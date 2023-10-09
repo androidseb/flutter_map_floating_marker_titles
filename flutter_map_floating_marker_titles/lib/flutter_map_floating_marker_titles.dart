@@ -7,7 +7,7 @@ import 'package:flutter_floating_map_marker_titles_core/controller/map_view_inte
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/plugin_api.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'dart:async';
 
@@ -44,6 +44,12 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Key? key,
     this._mapOptions,
     this._children,
+    @Deprecated(
+      'Append all of these children to `children`. '
+      'This property has been removed to simplify the way layers are inserted '
+      'into the map, and allow for greater flexibility of layer positioning. '
+      'This property is deprecated since v6.',
+    )
     this._nonRotatedChildren, {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
@@ -60,6 +66,7 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     return FlutterMap(
       options: _mapOptions,
       children: _children,
+      // ignore: deprecated_member_use
       nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
     );
