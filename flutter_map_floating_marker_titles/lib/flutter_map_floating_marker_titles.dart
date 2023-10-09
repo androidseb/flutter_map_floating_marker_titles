@@ -2,16 +2,15 @@ library flutter_map_floating_marker_titles;
 
 import 'package:flutter/widgets.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
-import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/model/floating_marker_title_info.dart';
+import 'package:flutter_floating_map_marker_titles_core/view/floating_marker_titles_overlay.dart';
+import 'package:flutter_floating_map_marker_titles_core/controller/map_view_interface/abstract_czr_map_view_interface.dart';
 import 'package:flutter_floating_map_marker_titles_core/view/abstract_map_view_wrapper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_map/plugin_api.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'dart:async';
-
-part 'flutter_map_controller.dart';
 
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
@@ -26,10 +25,10 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
     final List<Widget> children = const [],
     final List<Widget> nonRotatedChildren = const [],
-    final FMTOMapController? mapController,
+    final MapController? mapController,
   }) {
     return FlutterMapWithFMTO._internal(
-      _FlutterMapMVI(mapController ?? FMTOMapController(), fmtoOptions.mapProjectionsCacheSize),
+      _FlutterMapMVI(mapController ?? MapController(), fmtoOptions.mapProjectionsCacheSize),
       fmtoOptions,
       key,
       options,
@@ -46,6 +45,12 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final Key? key,
     this._mapOptions,
     this._children,
+    @Deprecated(
+      'Append all of these children to `children`. '
+      'This property has been removed to simplify the way layers are inserted '
+      'into the map, and allow for greater flexibility of layer positioning. '
+      'This property is deprecated since flutter_map v6.',
+    )
     this._nonRotatedChildren, {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
@@ -62,26 +67,40 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     return FlutterMap(
       options: _mapOptions,
       children: _children,
+      // ignore: deprecated_member_use
       nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
     );
   }
 }
 
-class FMTOMapController extends _MapControllerImpl {
-  FlutterMapState? _fmtoMapControllerState;
+class FloatingMarkerTitlesLayer extends StatelessWidget {
+  final FMTOOptions fmtoOptions;
+  final List<FloatingMarkerTitleInfo>? floatingTitles;
+  final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream;
+
+  const FloatingMarkerTitlesLayer({
+    required this.fmtoOptions,
+    super.key,
+    this.floatingTitles,
+    this.floatingTitlesStream,
+  });
 
   @override
-  set state(final FlutterMapState state) {
-    _fmtoMapControllerState = state;
-    super.state = state;
+  Widget build(BuildContext context) {
+    final MapController mapController = MapController.of(context);
+    final _FlutterMapMVI _mapViewInterface = _FlutterMapMVI(mapController, fmtoOptions.mapProjectionsCacheSize);
+    return FlutterMapFloatingMarkerTitlesOverlay(
+      _mapViewInterface,
+      fmtoOptions,
+      floatingTitles: floatingTitles,
+      floatingTitlesStream: floatingTitlesStream,
+    );
   }
-
-  double get rotation => _fmtoMapControllerState?.rotation ?? 0;
 }
 
 class _FlutterMapMVI extends AbstractCZRMapViewInterface {
-  FMTOMapController mapController;
+  MapController mapController;
 
   _FlutterMapMVI(
     this.mapController,
@@ -98,16 +117,16 @@ class _FlutterMapMVI extends AbstractCZRMapViewInterface {
 
   @override
   LatLng getMapViewCenter() {
-    return mapController.center;
+    return mapController.camera.center;
   }
 
   @override
   double getMapViewZoom() {
-    return mapController.zoom;
+    return mapController.camera.zoom;
   }
 
   @override
   double getMapViewRotationDegrees() {
-    return mapController.rotation;
+    return mapController.camera.rotation;
   }
 }

@@ -74,7 +74,7 @@ class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
 
   @override
   String getTitleText() {
-    return demo_data.GOOGLE_MAPS_PAGE_TITLE;
+    return GoogleMapsDemoPage.route;
   }
 
   @override

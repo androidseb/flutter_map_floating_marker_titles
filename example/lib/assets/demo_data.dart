@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:latlong2/latlong.dart';
 
 const String APP_TITLE = 'Floating markers demo';
-const String FLUTTER_MAP_PAGE_TITLE = 'Flutter Map floating markers';
-const String FLUTTER_MAP_WITH_STREAMS_PAGE_TITLE = 'Flutter Map floating markers with streams';
-const String GOOGLE_MAPS_PAGE_TITLE = 'Google Maps floating markers';
 const String FLUTTER_MAP_HELP_DIALOG_MESSAGE = '''
 You can tap on the map to add markers with floating titles.
 You can use the slider at the top to rotate the map too.

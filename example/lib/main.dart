@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
-import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map.dart';
-import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map_with_streams.dart';
-import 'package:flutter_floating_map_marker_titles_demo/pages/google_maps.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map/flutter_map_with_layer.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map/flutter_map_wrapped_data.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/flutter_map/flutter_map_wrapped_streams.dart';
+import 'package:flutter_floating_map_marker_titles_demo/pages/google_maps/google_maps.dart';
 
 void main() {
   runApp(DemoApp());
@@ -18,10 +19,11 @@ class DemoApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: FlutterMapDemoPage(),
+      home: FlutterMapLayerDemoPage(),
       routes: <String, WidgetBuilder>{
-        FlutterMapDemoPage.route: (context) => FlutterMapDemoPage(),
-        FlutterMapWithStreamsDemoPage.route: ((context) => FlutterMapWithStreamsDemoPage()),
+        FlutterMapLayerDemoPage.route: (context) => FlutterMapLayerDemoPage(),
+        FlutterMapDWrapperDemoPage.route: (context) => FlutterMapDWrapperDemoPage(),
+        FlutterMapSWrapperDemoPage.route: ((context) => FlutterMapSWrapperDemoPage()),
         GoogleMapsDemoPage.route: (context) => GoogleMapsDemoPage(),
       },
     );

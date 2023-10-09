@@ -63,6 +63,7 @@ floatingTitles.add(FloatingMarkerTitleInfo(
 ### Step 4a: Create the Flutter Map View
 
 ```dart
+// With the FlutterMapWithFMTO widget as a FlutterMap wrapper
 FlutterMapWithFMTO(
   floatingTitles: floatingTitles,
   fmtoOptions: fmtoOptions,
@@ -77,7 +78,24 @@ FlutterMapWithFMTO(
       urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
     ),
   ],
-),
+)
+
+// Or with the FloatingMarkerTitlesLayer widget as a FlutterMap layer
+FlutterMap(
+  options: MapOptions(
+    center: LatLng(0, 0),
+    zoom: 13,
+  ),
+  children: [
+    TileLayer(
+      urlTemplate: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+    ),
+    FloatingMarkerTitlesLayer(
+      floatingTitles: floatingTitles,
+      fmtoOptions: fmtoOptions,
+    ),
+  ],
+)
 ```
 
 ### Step 4b: Create the Google Maps View
@@ -92,7 +110,7 @@ GoogleMapWithFMTO(
     target: LatLng(0, 0),
     zoom: 13,
   ),
-),
+)
 ```
 
 ## Library features
