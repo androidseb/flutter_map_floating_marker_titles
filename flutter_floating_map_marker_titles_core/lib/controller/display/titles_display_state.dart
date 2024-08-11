@@ -63,6 +63,13 @@ class TitlesDisplayState {
     }
   }
 
+  void removeAllTitles() {
+    final Iterable<int> currentIds = List.from(_titleDisplayInfoMap.keys);
+    for (final currentId in currentIds) {
+      removeTitleInfo(currentId);
+    }
+  }
+
   void removeTitleInfo(final int floatingMarkerTitleInfoId) {
     _titleDisplayInfoMap.remove(floatingMarkerTitleInfoId);
     fullyVisibleTitleIds.remove(floatingMarkerTitleInfoId);

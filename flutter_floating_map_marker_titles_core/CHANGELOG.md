@@ -1,3 +1,7 @@
+## [1.1.0] - 2024/08/10
+
+* Fixed a bug with floating marker titles still appearing with maxTitlesCount=0 in some specific cases (e.g. using more than one z-index)
+
 ## [1.0.0] - 2023/06/22
 
 * Updated the semantic version prefix to "officially stable" 1.X.X, because this library has been successful in a production app (see https://mapmarker.app) used by thousands of daily users for several months

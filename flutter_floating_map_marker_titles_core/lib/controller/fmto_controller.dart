@@ -328,9 +328,13 @@ class FMTOController {
   }
 
   void _updateDisplayState(final Size size) {
-    _titlesDisplayState.removeObsoleteTitles(_titlesMap.keys);
-    final int currentTitlesLowestZIndex = _updateDisplayStateForCurrentlyDisplayedTitles(size);
-    _updateDisplayStateByCheckingMoreTitles(size, currentTitlesLowestZIndex);
+    if (fmtoOptions.maxTitlesCount <= 0) {
+      _titlesDisplayState.removeAllTitles();
+    } else {
+      _titlesDisplayState.removeObsoleteTitles(_titlesMap.keys);
+      final int currentTitlesLowestZIndex = _updateDisplayStateForCurrentlyDisplayedTitles(size);
+      _updateDisplayStateByCheckingMoreTitles(size, currentTitlesLowestZIndex);
+    }
     _updateDisplayStateTitlesWorkflow();
   }
 
