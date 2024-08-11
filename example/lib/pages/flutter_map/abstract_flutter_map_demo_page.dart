@@ -4,7 +4,6 @@ import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
-import 'package:flutter_map/src/gestures/positioned_tap_detector_2.dart';
 
 abstract class AbstractFlutterMapDemoPage extends AbstractDemoPage<Marker> {
   AbstractFlutterMapDemoPage({final Key? key}) : super(key: key);
