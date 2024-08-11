@@ -1,3 +1,8 @@
+## [1.2.0] - 2024/08/10
+
+* Updated flutter_map dependency to flutter_map: ^7.0.2
+* Updated flutter_floating_map_marker_titles_core dependency to flutter_floating_map_marker_titles_core: ^1.1.0
+
 ## [1.1.0] - 2023/10/09
 
 * Updated flutter_map dependency to flutter_map: ^6.0.0

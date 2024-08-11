@@ -15,7 +15,6 @@ import 'dart:async';
 class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
   final MapOptions _mapOptions;
   final List<Widget> _children;
-  final List<Widget> _nonRotatedChildren;
 
   factory FlutterMapWithFMTO({
     required final FMTOOptions fmtoOptions,
@@ -24,7 +23,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
     final List<Widget> children = const [],
-    final List<Widget> nonRotatedChildren = const [],
     final MapController? mapController,
   }) {
     return FlutterMapWithFMTO._internal(
@@ -33,7 +31,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
       key,
       options,
       children,
-      nonRotatedChildren,
       floatingTitles: floatingTitles,
       floatingTitlesStream: floatingTitlesStream,
     );
@@ -44,14 +41,7 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     final FMTOOptions fmtoOptions,
     final Key? key,
     this._mapOptions,
-    this._children,
-    @Deprecated(
-      'Append all of these children to `children`. '
-      'This property has been removed to simplify the way layers are inserted '
-      'into the map, and allow for greater flexibility of layer positioning. '
-      'This property is deprecated since flutter_map v6.',
-    )
-    this._nonRotatedChildren, {
+    this._children, {
     final List<FloatingMarkerTitleInfo>? floatingTitles,
     final Stream<List<FloatingMarkerTitleInfo>>? floatingTitlesStream,
   }) : super(
@@ -67,8 +57,6 @@ class FlutterMapWithFMTO extends AbstractMapViewWrapper<_FlutterMapMVI> {
     return FlutterMap(
       options: _mapOptions,
       children: _children,
-      // ignore: deprecated_member_use
-      nonRotatedChildren: _nonRotatedChildren,
       mapController: mapViewInterface.mapController,
     );
   }
