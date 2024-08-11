@@ -12,7 +12,7 @@ dependencies:
 
   latlong2: ^0.9.0
 
-  flutter_floating_map_marker_titles_core: ^1.0.0
+  flutter_floating_map_marker_titles_core: ^1.1.0
   # Uncomment and use this a dependency when working locally
   #flutter_floating_map_marker_titles_core:
   #  path: ../flutter_floating_map_marker_titles_core
