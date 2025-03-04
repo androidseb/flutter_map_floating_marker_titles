@@ -18,5 +18,6 @@ These steps are based on the [official documentation](https://flutter.dev/docs/d
     * core library: `git tag -a "core_v1.1.0" -m "core_v1.1.0"`
     * flutter_map plugin: `git tag -a "fm_v1.2.0" -m "fm_v1.2.0"`
     * google_maps_flutter plugin: `git tag -a "gm_v1.1.0" -m "gm_v1.1.0"`
+* Push the tags with: `git push origin --tags`
 * Merge the temporary branch back into main
 * Delete the temporary branch
