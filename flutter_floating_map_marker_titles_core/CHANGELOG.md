@@ -1,3 +1,7 @@
+## [1.1.1] - 2025/03/04
+
+* Fixed some warnings related to color class getters
+
 ## [1.1.0] - 2024/08/10
 
 * Fixed a bug with floating marker titles still appearing with maxTitlesCount=0 in some specific cases (e.g. using more than one z-index)
