@@ -68,15 +68,15 @@ packages:
       path: "../flutter_floating_map_marker_titles_core"
       relative: true
     source: path
-    version: "1.1.0"
+    version: "1.1.1"
   flutter_map:
     dependency: "direct main"
     description:
       name: flutter_map
-      sha256: "2ecb34619a4be19df6f40c2f8dce1591675b4eff7a6857bd8f533706977385da"
+      sha256: bbf145e8220531f2f727608c431871c7457f3b134e513543913afd00fdc1cd47
       url: "https://pub.dev"
     source: hosted
-    version: "7.0.2"
+    version: "8.1.0"
   flutter_map_floating_marker_titles:
     dependency: "direct overridden"
     description:
@@ -406,5 +406,5 @@ packages:
     source: hosted
     version: "2.0.0"
 sdks:
-  dart: ">=3.4.0 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  dart: ">=3.6.0 <4.0.0"
+  flutter: ">=3.27.0"
