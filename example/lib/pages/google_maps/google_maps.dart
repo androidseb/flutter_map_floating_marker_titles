@@ -21,7 +21,11 @@ class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
   Future<void> _createMarkerImageFromAsset(final BuildContext context) async {
     if (_markerIcon == null) {
       final ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: Size.square(20));
-      BitmapDescriptor.fromAssetImage(imageConfiguration, demo_data.MARKER_ICON_ASSET_PATH).then(_updateBitmap);
+      BitmapDescriptor.asset(
+        imageConfiguration,
+        demo_data.MARKER_ICON_ASSET_PATH,
+        bitmapScaling: MapBitmapScaling.none,
+      ).then(_updateBitmap);
     }
   }
 
