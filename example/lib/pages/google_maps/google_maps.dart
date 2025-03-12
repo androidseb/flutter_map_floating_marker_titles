@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_floating_map_marker_titles_demo/assets/demo_data.dart' as demo_data;
 import 'package:flutter_floating_map_marker_titles_demo/pages/abstract_demo_page.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -18,13 +19,23 @@ int markerId = 0;
 class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
   BitmapDescriptor? _markerIcon;
 
+  BitmapDescriptor createBitmapDescriptorFromBytes(Uint8List bytes) {
+    // Note that the correct non-deprecated code should be:
+    // return BitmapDescriptor.bytes(
+    //   bytes,
+    //   bitmapScaling: MapBitmapScaling.none,
+    // );
+    // However at the current time, bitmapScaling is not working on iOS, so we
+    // are using the deprecated method instead which works for both Android and iOS.
+    // ignore: deprecated_member_use
+    return BitmapDescriptor.fromBytes(bytes);
+  }
+
   Future<void> _createMarkerImageFromAsset(final BuildContext context) async {
     if (_markerIcon == null) {
-      BitmapDescriptor.asset(
-        ImageConfiguration(),
-        demo_data.MARKER_ICON_ASSET_PATH,
-        bitmapScaling: MapBitmapScaling.none,
-      ).then(_updateBitmap);
+      final bytes = Uint8List.sublistView(await rootBundle.load(demo_data.MARKER_ICON_ASSET_PATH));
+      final BitmapDescriptor bitmapDescriptor = createBitmapDescriptorFromBytes(bytes);
+      _updateBitmap(bitmapDescriptor);
     }
   }
 
