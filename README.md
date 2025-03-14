@@ -26,7 +26,7 @@ This project is divided into the following main folders:
 
 In the sample app, the [Flutter Map](https://github.com/fleaflet/flutter_map) example will work out of the box, but for the [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter) example to work, you will need to update the following file, based on the [Google Maps Flutter library getting started instructions](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter#getting-started):
 * `example/android/app/src/main/AndroidManifest.xml`
-* `example/ios/Runner/AppDelegate.m`
+* `example/ios/Runner/AppDelegate.swift`
 
 ## How to use this library in your code
 
