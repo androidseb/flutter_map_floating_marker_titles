@@ -25,8 +25,9 @@ class _GoogleMapsDemoPageState extends AbstractDemoPageState<Marker> {
     //   bytes,
     //   bitmapScaling: MapBitmapScaling.none,
     // );
-    // However at the current time, bitmapScaling is not working on iOS, so we
-    // are using the deprecated method instead which works for both Android and iOS.
+    // However at the current time, bitmapScaling is not working on iOS:
+    // https://github.com/flutter/flutter/issues/165212
+    // Using the deprecated method instead which works for both Android and iOS.
     // ignore: deprecated_member_use
     return BitmapDescriptor.fromBytes(bytes);
   }
