@@ -171,6 +171,7 @@ FloatingMarkerTitleInfo(
 ## Known limitations
 
 * Does not work in web for [Google Maps Flutter](https://github.com/flutter/plugins/tree/master/packages/google_maps_flutter/google_maps_flutter)
+* Works poorly with Google Maps on Android - when moving the map around, the titles visually lag behind: this is due to a bug in the [google_maps_flutter_android](https://pub.dev/packages/google_maps_flutter_android) library reported [here](https://github.com/flutter/flutter/issues/169152)
 
 ## About issues and/or feature requests
 
