@@ -1,3 +1,7 @@
+## [1.2.0] - 2025/06/21
+
+* Introduced the textPaintingCacheMaxTimeToLiveTimeMillis option to better deal with unloaded glyphs (e.g. emoji on web)
+
 ## [1.1.1] - 2025/03/04
 
 * Fixed some warnings related to color class getters

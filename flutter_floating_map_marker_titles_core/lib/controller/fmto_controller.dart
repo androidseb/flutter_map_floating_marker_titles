@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'dart:ui';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/cache/text_painting_cache.dart';
 import 'package:flutter_floating_map_marker_titles_core/controller/display/floating_title_painter.dart';
@@ -27,6 +28,8 @@ class FloatingMarkerPlacementPolicy {
 }
 
 class FMTOOptions {
+  static const int? _defaultTextPaintingCacheMaxTimeToLiveTimeMillis = kIsWeb ? 1000 : null;
+
   /// The number of milliseconds between two repaints of the titles layer. 60 frames per seconds = 16 milliseconds between each frame.
   final int repaintIntervalMillis;
 
@@ -44,6 +47,23 @@ class FMTOOptions {
 
   /// Maximum number of cached, pre-laid out, ready to draw floating titles info, since computing the layout of text is an expensive operation
   final int textPaintingCacheSize;
+
+  /// Maximum time to live of cached, pre-laid out, ready to draw floating
+  /// titles info. Setting this can be useful if painted titles are likely to
+  /// contain special characters initially rendering as a tofu box character,
+  /// since the cached text painters will persist rendering the tofu box
+  /// character even after the glyph has been loaded.
+  /// For example, on web, if the titles contain emoji characters and the first
+  /// rendering of the emoji characters happen inside the floating titles, a
+  /// tofu box character will display instead of the emoji, and that rendering
+  /// will persist as long as the text painter remains in cache.
+  /// Setting textPaintingCacheMaxTimeToLiveTimeMillis allows to limit the
+  /// duration of the faulty rendering.
+  /// Note that this helps mitigate display issues by limiting the time during
+  /// which tofu box characters are displayed - if your requirements are
+  /// stronger (e.g. prevent tofu box character from showing at all) consider
+  /// another approach like pre-loading fonts for web.
+  final int? textPaintingCacheMaxTimeToLiveTimeMillis;
 
   /// Maximum number of cached coordinates by the map coordinates projections calculator
   final int mapProjectionsCacheSize;
@@ -64,6 +84,7 @@ class FMTOOptions {
     this.maxTitlesWidth = 150,
     this.maxTitleLines = 2,
     this.textPaintingCacheSize = 2000,
+    this.textPaintingCacheMaxTimeToLiveTimeMillis = _defaultTextPaintingCacheMaxTimeToLiveTimeMillis,
     this.mapProjectionsCacheSize = 10000,
     this.titlesToCheckPerFrame = 30,
     this.fadeInAnimationTimeMillis = 300,
@@ -90,7 +111,10 @@ class FMTOController {
   })  : fmtoOptions = options,
         _titlesMap = {},
         _floatingTitles = floatingTitles ?? [],
-        _textPaintingCache = TextPaintingCache(options.textPaintingCacheSize),
+        _textPaintingCache = TextPaintingCache(
+          options.textPaintingCacheSize,
+          options.textPaintingCacheMaxTimeToLiveTimeMillis,
+        ),
         _titlesDisplayState = TitlesDisplayState() {
     _updateTitlesMap(floatingTitlesStream?.asBroadcastStream());
   }
@@ -356,6 +380,7 @@ class FMTOController {
     final Size size,
     final bool transparentTitles,
   ) {
+    _textPaintingCache.checkAndApplyTimeToLive();
     if (transparentTitles) {
       _paintTitles(canvas, _titlesDisplayState.fadingInTitleIds);
     } else {

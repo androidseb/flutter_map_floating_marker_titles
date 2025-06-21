@@ -24,4 +24,6 @@ abstract class CachedCalculator<K, V> {
   }
 
   V calculateValue(final K key);
+
+  void clear() => _cache.clear();
 }

@@ -33,4 +33,9 @@ class RotatingCache<K, V> {
     }
     _primaryCache[key] = value;
   }
+
+  void clear() {
+    _primaryCache.clear();
+    _secondaryCache.clear();
+  }
 }

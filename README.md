@@ -138,6 +138,22 @@ FMTOOptions(
   maxTitleLines: 2,
   // Maximum number of cached, pre-laid out, ready to draw floating titles info, since computing the layout of text is an expensive operation
   textPaintingCacheSize: 2000,
+  /// Maximum time to live of cached, pre-laid out, ready to draw floating
+  /// titles info. Setting this can be useful if painted titles are likely to
+  /// contain special characters initially rendering as a tofu box character,
+  /// since the cached text painters will persist rendering the tofu box
+  /// character even after the glyph has been loaded.
+  /// For example, on web, if the titles contain emoji characters and the first
+  /// rendering of the emoji characters happen inside the floating titles, a
+  /// tofu box character will display instead of the emoji, and that rendering
+  /// will persist as long as the text painter remains in cache.
+  /// Setting textPaintingCacheMaxTimeToLiveTimeMillis allows to limit the
+  /// duration of the faulty rendering.
+  /// Note that this helps mitigate display issues by limiting the time during
+  /// which tofu box characters are displayed - if your requirements are
+  /// stronger (e.g. prevent tofu box character from showing at all) consider
+  /// another approach like pre-loading fonts for web.
+  textPaintingCacheMaxTimeToLiveTimeMillis: kIsWeb ? 1000 : null,
   // Maximum number of cached coordinates by the map coordinates projections calculator
   mapProjectionsCacheSize: 10000,
   // No performance drop with more markers once the maximum number of floating titles has been reached, since the library only scans for a limited number of markers per frame, which can be set with titlesToCheckPerFrame

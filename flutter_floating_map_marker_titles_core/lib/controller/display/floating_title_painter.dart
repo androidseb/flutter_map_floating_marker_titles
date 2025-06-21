@@ -5,7 +5,7 @@ import 'package:flutter_floating_map_marker_titles_core/controller/display/layer
 import 'package:flutter_floating_map_marker_titles_core/controller/fmto_controller.dart';
 
 class FloatingTitlePainter {
-  final TitleLayerPainter? _bgLayerPainter;
+  final TitleLayerPainter _bgLayerPainter;
   final TitleLayerPainter _fgLayerPainter;
 
   factory FloatingTitlePainter(
@@ -25,7 +25,7 @@ class FloatingTitlePainter {
     this._fgLayerPainter,
   );
 
-  static TitleLayerPainter? _createBGPainter(
+  static TitleLayerPainter _createBGPainter(
     final String textString,
     final Color textColor,
     final bool isBoldText,
@@ -54,7 +54,7 @@ class FloatingTitlePainter {
   }
 
   void paintTitle(final Canvas canvas, final Offset offset) {
-    _bgLayerPainter?.paintLayer(canvas, offset);
+    _bgLayerPainter.paintLayer(canvas, offset);
     _fgLayerPainter.paintLayer(canvas, offset);
   }
 
